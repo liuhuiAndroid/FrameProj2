@@ -2,6 +2,7 @@ package com.android.loter;
 
 import android.app.Application;
 
+import com.android.loter.db.DBHelper;
 import com.android.loter.util.SPUtil;
 
 /**
@@ -18,7 +19,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mAppContext = this;
-//        DBHelper.init(this);
+        DBHelper.init(this);
         spUtil = new SPUtil(this);
         new AppError(mAppContext).initUncaught();
     }
