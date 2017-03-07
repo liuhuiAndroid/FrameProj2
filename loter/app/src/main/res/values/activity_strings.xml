@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--通用-->
+    <string name="error_network">Network error.</string>
+    <string name="error_permission">Permission error.</string>
+    <string name="error_parse">Parse error.</string>
+    <string name="error_unknow">Unknow error.</string>
+
+    <!--AddWeeklyActivity-->
+    <string name="addweeklyActivity_title">Add Weekly</string>
+</resources>
