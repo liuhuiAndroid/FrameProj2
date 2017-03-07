@@ -20,9 +20,21 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+/**
+ * 通用的ViewHolder
+ * http://blog.csdn.net/lmj623565791/article/details/51118836
+ *
+ * ViewHolder的主要的作用：
+ * 通过成员变量存储对应的convertView中需要操作的子View，避免每次findViewById，从而提升运行的效率
+ *
+ * ViewHolder的原理：
+ * 我们的ViewHolder继承自RecyclerView.ViewHolder，
+ * 内部通过SparseArray来缓存我们itemView内部的子View，从而得到一个通用的ViewHolder。
+ * 每次需要创建ViewHolder只需要传入我们的layoutId即可
+ */
 public class ViewHolder extends RecyclerView.ViewHolder
 {
-    private SparseArray<View> mViews;
+    private SparseArray<View> mViews; // 稀疏数组
     private View mConvertView;
     private Context mContext;
 

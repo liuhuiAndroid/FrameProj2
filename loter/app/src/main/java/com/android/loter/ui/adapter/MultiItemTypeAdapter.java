@@ -4,11 +4,9 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.android.loter.ui.adapter.base.ItemViewDelegate;
 import com.android.loter.ui.adapter.base.ItemViewDelegateManager;
 import com.android.loter.ui.adapter.base.ViewHolder;
-
 import java.util.List;
 
 /**
@@ -28,13 +26,25 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
         mItemViewDelegateManager = new ItemViewDelegateManager();
     }
 
+    /**
+     * 判断属于哪一种ViewType
+     * @param position
+     * @return
+     */
     @Override
     public int getItemViewType(int position) {
-        if (!useItemViewDelegateManager()) return super.getItemViewType(position);
+        if (!useItemViewDelegateManager()) // 没有
+            return super.getItemViewType(position);
         return mItemViewDelegateManager.getItemViewType(mDatas.get(position), position);
     }
 
 
+    /**
+     * 根据不同的viewType生成不同的ViewHolder
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ItemViewDelegate itemViewDelegate = mItemViewDelegateManager.getItemViewDelegate(viewType);

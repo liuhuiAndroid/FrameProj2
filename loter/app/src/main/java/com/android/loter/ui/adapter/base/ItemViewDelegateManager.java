@@ -66,15 +66,18 @@ public class ItemViewDelegateManager<T>
         return this;
     }
 
+    //======================= 以上只是对delegates的增刪和查数量
+    //======================= ===============================
+
     public int getItemViewType(T item, int position)
     {
-        int delegatesCount = delegates.size();
+        int delegatesCount = delegates.size(); //CommonAdapter只有一个
         for (int i = delegatesCount - 1; i >= 0; i--)
         {
             ItemViewDelegate<T> delegate = delegates.valueAt(i);
             if (delegate.isForViewType( item, position))
             {
-                return delegates.keyAt(i);
+                return delegates.keyAt(i);//CommonAdapter返回0
             }
         }
         throw new IllegalArgumentException(

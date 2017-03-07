@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Created by zhy on 16/4/9.
+ *
  */
 public abstract class CommonAdapter<T> extends MultiItemTypeAdapter<T>
 {
@@ -34,6 +35,12 @@ public abstract class CommonAdapter<T> extends MultiItemTypeAdapter<T>
                 return layoutId;
             }
 
+            /**
+             * 永远是同一种类型
+             * @param item
+             * @param position
+             * @return
+             */
             @Override
             public boolean isForViewType( T item, int position)
             {
