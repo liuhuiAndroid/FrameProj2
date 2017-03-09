@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="44dp"
+    android:height="42dp"
+    android:viewportWidth="44"
+    android:viewportHeight="42">
+
+    <group>
+        <path
+            android:fillColor="@color/tab_normal"
+            android:fillAlpha="1.00"
+            android:strokeAlpha="1.00"
+            android:pathData="M1.08,14.89 C1.4,7.29,8.4,0.83,15.98,1.02 C21.27,1.13,26.63,0.55,31.85,1.51
+C37.9,3.04,42.66,8.7,42.92,14.96 C43.13,20.39,43.62,26.5,39.98,31.02
+C36.68,35.66,30.79,37.44,25.31,37.05 C24.2,38.36,23.1,39.67,22,40.99
+C20.9,39.67,19.8,38.36,18.69,37.05 C13.43,37.4,7.79,35.85,4.44,31.54
+C0.4,26.99,0.82,20.55,1.08,14.89 M3.09,14.9 C2.86,20.26,2.29,26.49,6.34,30.7
+C9.61,34.6,14.96,35.33,19.74,35.02 C20.5,36.01,21.25,36.99,22,37.98
+C22.75,36.99,23.5,36.01,24.25,35.02 C27.19,34.99,30.26,35.18,33.01,33.98
+C37.4,32.21,40.64,27.83,40.91,23.09 C41.19,17.53,41.68,10.98,37.2,6.82
+C31.93,1.32,23.76,3.38,17,2.99 C10.15,2.46,3.41,7.94,3.09,14.9 Z" />
+        <path
+            android:fillColor="@color/tab_normal"
+            android:fillAlpha="1.00"
+            android:strokeAlpha="1.00"
+            android:pathData="M10.24,16.1 C11.72,15.69,14.11,16.05,13.99,18.04
+C14.92,20.98,10.4,22.19,9.13,19.84 C8.86,18.49,8.77,16.78,10.24,16.1 Z" />
+        <path
+            android:fillColor="@color/tab_normal"
+            android:fillAlpha="1.00"
+            android:strokeAlpha="1.00"
+            android:pathData="M20.2,16.11 C21.68,15.69,24.05,16.01,23.99,17.99
+C24.95,20.95,20.44,22.2,19.12,19.84 C18.87,18.51,18.77,16.82,20.2,16.11 Z" />
+        <path
+            android:fillColor="@color/tab_normal"
+            android:fillAlpha="1.00"
+            android:strokeAlpha="1.00"
+            android:pathData="M30.15,16.13 C31.66,15.67,34.1,16.02,34,18.05
+C34.91,20.98,30.41,22.18,29.13,19.84 C28.87,18.52,28.77,16.86,30.15,16.13 Z" />
+    </group>
+</vector>
