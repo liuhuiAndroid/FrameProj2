@@ -6,7 +6,20 @@
     <string name="error_permission">Permission error.</string>
     <string name="error_parse">Parse error.</string>
     <string name="error_unknow">Unknow error.</string>
+    <string name="universal_empty">暂无更多内容</string>
 
-    <!--AddWeeklyActivity-->
-    <string name="addweeklyActivity_title">Add Weekly</string>
+    <!--LoginActivity-->
+    <string name="loginactivity_title">登录</string>
+    <string name="loginactivity_register">快速注册</string>
+    <string name="loginactivity_forget_password">忘记密码?</string>
+    <string name="loginactivity_phonenum">请输入手机号</string>
+    <string name="loginactivity_password">请输入密码</string>
+
+    <!--RegisterActivity-->
+    <string name="registeractivity_title">注册</string>
+
+    <!--ForgetPasswordActivity-->
+    <string name="forgetpasswordactivity_title">忘记密码</string>
+
+
 </resources>

@@ -52,4 +52,8 @@ dependencies {
     compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
 //    compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
     compile 'in.srain.cube:ultra-ptr:1.0.11'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 }

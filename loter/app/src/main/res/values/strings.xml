@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">loter</string>
+
+    <string name="foot_view_loading">加载中...</string>
+    <string name="foot_view_load_all">数据已经全部加载完成</string>
+
 </resources>

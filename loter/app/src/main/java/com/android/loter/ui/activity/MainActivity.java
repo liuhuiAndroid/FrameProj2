@@ -55,7 +55,8 @@ public class MainActivity extends BaseActivity {
                 } else if (i == R.id.rb_profit) {
                     mVpMain.setCurrentItem(3, false);
                 } else if (i == R.id.rb_mine) {
-                    mVpMain.setCurrentItem(4, false);
+//                    mVpMain.setCurrentItem(4, false);
+                    openActivity(LoginActivity.class);
                 }
 
             }

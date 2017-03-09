@@ -3,11 +3,15 @@ package com.android.loter.ui.decoration;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+
+import com.android.loter.R;
 
 
 public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
@@ -19,6 +23,8 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
         final TypedArray a = context.obtainStyledAttributes(ATTRS);
         if (drawable == 0) {
             mDivider = a.getDrawable(0);
+        } else if(drawable == 1){
+            mDivider =ContextCompat.getDrawable(context,R.drawable.bg_item_decoration);
         }
         a.recycle();
     }
@@ -125,18 +131,19 @@ public class DividerGridItemDecoration extends RecyclerView.ItemDecoration {
         }
         return false;
     }
-//    过时
-//    @Override
-//    public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
-//        int spanCount = getSpanCount(parent);
-//        int childCount = parent.getAdapter().getItemCount();
-//        if (isLastRaw(parent, itemPosition, spanCount, childCount)) {   // 如果是最后一行，则不需要绘制底部
-//            outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
-//        } else if (isLastColum(parent, itemPosition, spanCount, childCount)) {  // 如果是最后一列，则不需要绘制右边
-//            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
-//        } else {
-//            outRect.set(0, 0, mDivider.getIntrinsicWidth(),
-//                    mDivider.getIntrinsicHeight());
-//        }
-//    }
+
+    @Override
+    public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
+        int spanCount = getSpanCount(parent);
+        int childCount = parent.getAdapter().getItemCount();
+        if (isLastRaw(parent, itemPosition, spanCount, childCount)) {   // 如果是最后一行，则不需要绘制底部
+            outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
+        } else if (isLastColum(parent, itemPosition, spanCount, childCount)) {  // 如果是最后一列，则不需要绘制右边
+            outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
+        } else {
+            outRect.set(0, 0, mDivider.getIntrinsicWidth(),
+                    mDivider.getIntrinsicHeight());
+        }
+    }
+
 }

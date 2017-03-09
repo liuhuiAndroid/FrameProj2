@@ -20,6 +20,9 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.android.loter.R;
+import com.android.loter.util.imageloader.ImageLoaderUtil;
+
 /**
  * 通用的ViewHolder
  * http://blog.csdn.net/lmj623565791/article/details/51118836
@@ -84,9 +87,6 @@ public class ViewHolder extends RecyclerView.ViewHolder
         return mConvertView;
     }
 
-
-
-
     /****以下为辅助方法*****/
 
     /**
@@ -121,6 +121,13 @@ public class ViewHolder extends RecyclerView.ViewHolder
     {
         ImageView view = getView(viewId);
         view.setImageDrawable(drawable);
+        return this;
+    }
+
+    public ViewHolder setImageUrl(int viewId, String url)
+    {
+        ImageView view = getView(viewId);
+        ImageLoaderUtil.getInstance().loadImage(url, R.mipmap.ic_launcher, view);
         return this;
     }
 

@@ -1,12 +1,15 @@
 package com.android.loter.ui.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import com.android.loter.R;
 import com.android.loter.inter.OnItemClickListener;
@@ -14,16 +17,22 @@ import com.android.loter.ui.adapter.CommonAdapter;
 import com.android.loter.ui.adapter.ImageLoopAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
 import com.android.loter.ui.base.BaseFragment;
-import com.android.loter.ui.decoration.DividerGridItemDecoration;
+import com.android.loter.ui.decoration.MarginDecoration;
 import com.android.loter.ui.widget.AdvertisingPoint;
 import com.android.loter.ui.widget.MyNoSlippingViewPager;
+import com.android.loter.ui.widget.MyPtrClassicFrameLayout;
 import com.android.loter.util.ScreenUtil;
+import com.android.loter.util.log.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -35,6 +44,7 @@ import rx.schedulers.Schedulers;
 
 public class HomeFragment extends BaseFragment {
 
+    private static final String TAG = "HomeFragment";
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     //轮播图
@@ -45,7 +55,12 @@ public class HomeFragment extends BaseFragment {
     LinearLayout mLlPoint;
     @BindView(R.id.rl_advertising)
     RelativeLayout mRlAdvertising;
-
+    @BindView(R.id.recyclerView2)
+    RecyclerView mRecyclerView2;
+    @BindView(R.id.ptr_layout)
+    MyPtrClassicFrameLayout mPtrLayout;
+    @BindView(R.id.scrollView)
+    ScrollView mScrollView;
 
     //广告地址列表
     private List<String> imgUrlList;
@@ -74,19 +89,30 @@ public class HomeFragment extends BaseFragment {
         stringList.add("1 - ");
         stringList.add("2 - ");
         stringList.add("3 - ");
+        stringList.add("4 - ");
+        stringList.add("5 - ");
+        stringList.add("6 - ");
         CommonAdapter commonAdapter = new CommonAdapter<String>(getActivity(), R.layout.layout_test, stringList) {
 
             @Override
             protected void convert(ViewHolder holder, String s, int position) {
+                holder.setImageUrl(R.id.iv_test, "http://p0.meituan.net/movie/07b7f22e2ca1820f8b240f50ee6aa269481512.jpg");
                 holder.setText(R.id.tv_test, s + " : " + holder.getLayoutPosition());
             }
-
         };
         mRecyclerView.setAdapter(commonAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity(), 0));
+        mRecyclerView.addItemDecoration(new MarginDecoration(getActivity()));
 
+        mRecyclerView2.setAdapter(commonAdapter);
+        mRecyclerView2.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecyclerView2.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView2.addItemDecoration(new MarginDecoration(getActivity()));
+
+        //解决scrollView嵌套recyclerView卡顿
+        mRecyclerView.setNestedScrollingEnabled(false);
+        mRecyclerView2.setNestedScrollingEnabled(false);
     }
 
     /**
@@ -129,7 +155,7 @@ public class HomeFragment extends BaseFragment {
         imageLoopAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                Logger.i("position = " + position);
             }
         });
         mViewPager.setAdapter(imageLoopAdapter);
@@ -149,6 +175,33 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void bindEvent() {
 
+        mPtrLayout.setPtrHandler(new PtrHandler() {
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                if (mScrollView != null) {
+                    boolean result = false;
+                    if (mScrollView.getScrollY() == 0) {
+                        result = true;
+                    }
+                    return result && PtrDefaultHandler
+                            .checkContentCanBePulledDown(frame, content, header);
+                } else {
+                    return PtrDefaultHandler
+                            .checkContentCanBePulledDown(frame, content, header);
+                }
+            }
+
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                if (mPtrLayout.isShown()) {
+                    mPtrLayout.refreshComplete();
+                }
+            }
+        });
+        //显示时间
+        mPtrLayout.setLastUpdateTimeRelateObject(this);
+        //viewpager滑动时禁用下拉
+        mPtrLayout.disableWhenHorizontalMove(true);
     }
 
     private boolean isChangeViewPagerPoint = false;
@@ -198,4 +251,11 @@ public class HomeFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
 }

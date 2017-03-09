@@ -1,5 +1,8 @@
 package com.android.loter.ui.base;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ParseException;
@@ -9,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 
 import com.android.loter.AppManager;
 import com.android.loter.R;
@@ -21,6 +25,7 @@ import org.json.JSONException;
 
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import retrofit2.HttpException;
@@ -71,6 +76,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    public void setImgBack(ImageView imageView) {
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
     /**
      * 跳转
      *
@@ -101,17 +115,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 绑定控件事件
      */
     protected abstract void bindEvent();
-
-    public void loadError(Throwable throwable, Context context,int from) {
-        // 从LoginAcivity 进来就显示timeout
-        if(from == 1){
-            if (throwable instanceof SocketTimeoutException){
-                ToastUtil.Infotoast(context, throwable.getMessage());
-            }else{
-                loadError(throwable,context);
-            }
-        }
-    }
 
     public void loadError(Throwable throwable, Context context) {
         throwable.printStackTrace();
@@ -164,13 +167,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//    private String getCurrentActivityName(Context context) {
-//        ActivityManager am = (ActivityManager) context.getSystemService(Activity.ACTIVITY_SERVICE);
-//
-//
-//        // get the info from the currently running task
-//        List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
-//        ComponentName componentInfo = taskInfo.get(0).topActivity;
-//        return componentInfo.getClassName();
-//    }
+    private String getCurrentActivityName(Context context) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Activity.ACTIVITY_SERVICE);
+
+
+        // get the info from the currently running task
+        List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
+        ComponentName componentInfo = taskInfo.get(0).topActivity;
+        return componentInfo.getClassName();
+    }
 }
