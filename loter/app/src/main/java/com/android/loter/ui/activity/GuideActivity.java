@@ -8,6 +8,7 @@ import com.android.loter.ui.adapter.GuideViewPagerAdapter;
 import com.android.loter.ui.base.BaseActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by we-win on 2017/3/9.
@@ -24,11 +25,13 @@ public class GuideActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        GuideViewPagerAdapter guideViewPagerAdapter = new GuideViewPagerAdapter(mViewPager,GuideActivity.this);
+        ButterKnife.bind(this);
+        GuideViewPagerAdapter guideViewPagerAdapter = new GuideViewPagerAdapter(mViewPager, GuideActivity.this);
         guideViewPagerAdapter.setOnButtonClickListener(new OnButtonClickListener() {
             @Override
             public void onButtonClick() {
                 openActivity(MainActivity.class);
+                finish();
             }
         });
         mViewPager.setAdapter(guideViewPagerAdapter);

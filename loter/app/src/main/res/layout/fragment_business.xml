@@ -1,12 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"/>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnChangeMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="模式切换"/>
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:layout_below="@id/rl_title"
+        android:layout_width="150dp"
+        android:layout_height="36dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rBtnShops"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:button="@null"
+            android:gravity="center"
+            android:text="商铺"
+            android:textColor="@drawable/btn_tab_text_selector"
+            android:textSize="14sp"/>
+
+        <RadioButton
+            android:id="@+id/rBtnGoods"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:button="@null"
+            android:gravity="center"
+            android:text="商品"
+            android:textColor="@drawable/btn_tab_text_selector"
+            android:textSize="14sp"/>
+
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:text="business"/>
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="18dp"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="消息"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_marginTop="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="活动"/>
+
+        <ImageView
+            android:layout_marginTop="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:layout_marginTop="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="购物车"/>
+
+        <TextView
+            android:layout_marginTop="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="扫一扫"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

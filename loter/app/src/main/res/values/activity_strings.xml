@@ -21,5 +21,8 @@
     <!--ForgetPasswordActivity-->
     <string name="forgetpasswordactivity_title">忘记密码</string>
 
+    <!--MainActivity-->
+    <string name="mainactivity_permission_location">没有权限，地图功能会无法使用!</string>
+
 
 </resources>

@@ -8,6 +8,7 @@ import com.android.loter.util.SPUtil;
 import com.android.loter.util.log.CrashlyticsTree;
 import com.android.loter.util.log.Logger;
 import com.android.loter.util.log.Settings;
+import com.baidu.mapapi.SDKInitializer;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -49,6 +50,9 @@ public class App extends Application {
         }
         LeakCanary.install(this);
         // Normal app init code...
+
+        // 百度地图在使用 SDK 各组间之前初始化 context 信息，传入ApplicationContext
+        SDKInitializer.initialize(this);
     }
 
     public static SPUtil getSpUtil() {

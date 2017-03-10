@@ -15,3 +15,14 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+#百度地图混淆
+-keep class com.baidu.** {*;}
+-keep class vi.com.** {*;}
+-dontwarn com.baidu.**
+
+#权限混淆
+-dontwarn com.zhy.m.**
+-keep class com.zhy.m.** {*;}
+-keep interface com.zhy.m.** { *; }
+-keep class **$$PermissionProxy { *; }
