@@ -86,4 +86,5 @@ dependencies {
 //    apt 'com.zhy:mpermission-compiler:1.0.0'
 //    compile 'com.zhy:mpermission-api:1.0.0'
     compile 'de.hdodenhof:circleimageview:2.0.0'
+    compile 'me.dm7.barcodescanner:zxing:1.9'
 }

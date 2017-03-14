@@ -6,10 +6,9 @@ import android.widget.RadioGroup;
 
 import com.android.loter.R;
 import com.android.loter.inter.CallbackChangeFragment;
-import com.android.loter.ui.adapter.MyFragmentPagerAdapter;
+import com.android.loter.ui.adapter.MyMainFragmentPagerAdapter;
 import com.android.loter.ui.base.BaseActivity;
 import com.android.loter.ui.widget.NoScrollViewPager;
-import com.android.loter.util.log.Logger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,16 +41,8 @@ public class MainActivity extends BaseActivity implements CallbackChangeFragment
     @Override
     protected void initData() {
         ButterKnife.bind(this);
-        MyFragmentPagerAdapter myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
-        if (mVpMain == null) {
-            Logger.i("mVpMain == null");
-            return;
-        }
-        if (myFragmentPagerAdapter == null) {
-            Logger.i("myFragmentPagerAdapter == null");
-            return;
-        }
-        mVpMain.setAdapter(myFragmentPagerAdapter);
+        MyMainFragmentPagerAdapter myMainFragmentPagerAdapter = new MyMainFragmentPagerAdapter(getSupportFragmentManager());
+        mVpMain.setAdapter(myMainFragmentPagerAdapter);
         mRgGroup.check(R.id.rb_home);
         //当点击底部按钮时切换页面
         mRgGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

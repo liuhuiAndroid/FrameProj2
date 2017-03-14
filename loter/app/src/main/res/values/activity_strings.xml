@@ -32,7 +32,12 @@
     <string name="forgetpasswordactivity_title">忘记密码</string>
 
     <!--MainActivity-->
-    <string name="mainactivity_permission_location">没有权限，地图功能会无法使用!</string>
+    <string name="mainactivity_permission_location">没有位置和读写权限，地图功能会无法使用!</string>
+
+    <!--ScannerActivity-->
+    <string name="scanneractivity_title">扫一扫</string>
+    <string name="scanneractivity_permission_camera">没有相机权限，扫一扫功能会无法使用!</string>
+    <string name="scanneractivity_permission_camera_deny">没有相机权限，扫一扫功无法使用!</string>
 
 
 </resources>

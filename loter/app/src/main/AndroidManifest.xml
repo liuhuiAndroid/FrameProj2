@@ -14,6 +14,7 @@
     <uses-permission android:name="android.permission.GET_TASKS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -64,6 +65,10 @@
 
         <activity
             android:name=".ui.activity.ProductActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.activity.ScannerActivity"
             android:screenOrientation="portrait"/>
 
 
