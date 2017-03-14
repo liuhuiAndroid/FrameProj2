@@ -1,7 +1,15 @@
 package com.android.loter.ui.fragment;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.widget.Toast;
+
 import com.android.loter.R;
 import com.android.loter.ui.base.BaseFragment;
+import com.android.loter.util.log.Logger;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -26,9 +34,10 @@ import butterknife.BindView;
 
 public class BusinessFragment extends BaseFragment {
 
+    private static final int REQUECT_CODE_LOCATION = 2;
+
     @BindView(R.id.bmapView)
     MapView mBmapView;
-
     BaiduMap mBaiduMap;
     // 定位相关
     LocationClient mLocClient;
@@ -58,6 +67,10 @@ public class BusinessFragment extends BaseFragment {
         mBaiduMap
                 .setMyLocationConfigeration(new MyLocationConfiguration(
                         MyLocationConfiguration.LocationMode.NORMAL, true, null));
+        // 隐藏比例尺
+        mBmapView.showScaleControl(false);
+        // 不显示缩放控件
+        mBmapView.showZoomControls(false);
         // 开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
         // 定位初始化
@@ -66,13 +79,11 @@ public class BusinessFragment extends BaseFragment {
         LocationClientOption option = new LocationClientOption();
         option.setOpenGps(true); // 打开gps
         option.setCoorType("bd09ll"); // 设置坐标类型
-        option.setScanSpan(1000);
+        option.setScanSpan(10000);
         mLocClient.setLocOption(option);
-        mLocClient.start();
+
 
         //初始化覆盖物
-//        LatLng llA = new LatLng(121.510761, 31.278299);
-
         // add marker overlay
         LatLng llA = new LatLng(39.963175, 116.400244);
         MarkerOptions ooA = new MarkerOptions().position(llA).icon(bd)
@@ -81,6 +92,38 @@ public class BusinessFragment extends BaseFragment {
         ooA.animateType(MarkerOptions.MarkerAnimateType.drop);
         mMarkerA = (Marker) (mBaiduMap.addOverlay(ooA));
 
+//        initPermission();
+    }
+
+    private void initPermission() {
+        // Here, thisActivity is the current activity
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION) || ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                Toast.makeText(getActivity(), getResources().getString(R.string.mainactivity_permission_location), Toast.LENGTH_SHORT).show();
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION , Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUECT_CODE_LOCATION);
+            } else {
+                // No explanation needed, we can request the permission.
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION , Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUECT_CODE_LOCATION);
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        }else{
+            isFirstLoc = true;
+            mLocClient.start();
+        }
     }
 
     @Override
@@ -88,10 +131,12 @@ public class BusinessFragment extends BaseFragment {
 
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
         mBmapView.onResume();
+        initPermission();
     }
 
     @Override
@@ -101,15 +146,42 @@ public class BusinessFragment extends BaseFragment {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        // 退出时销毁定位
+        mLocClient.stop();
+    }
+
+    @Override
     public void onDestroy() {
         mBmapView.onDestroy();
         super.onDestroy();
-        // 退出时销毁定位
-        mLocClient.stop();
         // 关闭定位图层
         mBaiduMap.setMyLocationEnabled(false);
         mBmapView = null;
-        bd.recycle();
+//        bd.recycle();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Logger.i(" --------requestCode = "+requestCode +"-------- ");
+        if (requestCode == REQUECT_CODE_LOCATION) {
+            Logger.i("grantResults[0] = "+grantResults[0]);
+            Logger.i("grantResults[1] = "+grantResults[1]);
+
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                Logger.i("mLocClient.start()");
+                isFirstLoc = true;
+                mLocClient.registerLocationListener(myListener);
+                mLocClient.start();
+            } else {
+                // Permission Denied
+                Toast.makeText(getActivity(), getResources().getString(R.string.mainactivity_permission_location), Toast.LENGTH_SHORT).show();
+
+            }
+            return;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     /**
@@ -119,10 +191,12 @@ public class BusinessFragment extends BaseFragment {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
+            Logger.i("MyLocationListenner 1");
             // map view 销毁后不在处理新接收的位置
             if (location == null || mBmapView == null) {
                 return;
             }
+            Logger.i("MyLocationListenner 2");
             MyLocationData locData = new MyLocationData.Builder()
                     .accuracy(location.getRadius())
                     // 此处设置开发者获取到的方向信息，顺时针0-360

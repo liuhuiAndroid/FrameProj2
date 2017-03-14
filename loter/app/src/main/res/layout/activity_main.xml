@@ -32,11 +32,11 @@
             android:text="首页"/>
 
         <RadioButton
-            android:id="@+id/rb_business"
+            android:id="@+id/rb_profit"
             style="@style/BottomTabStyle"
             android:checked="true"
             android:drawableBottom="@drawable/bg_toast"
-            android:text="逛商圈"/>
+            android:text="分享赚"/>
 
         <RadioButton
             android:id="@+id/rb_live"
@@ -46,11 +46,11 @@
             android:text="Go直播"/>
 
         <RadioButton
-            android:id="@+id/rb_profit"
+            android:id="@+id/rb_business"
             style="@style/BottomTabStyle"
             android:checked="true"
             android:drawableBottom="@drawable/bg_toast"
-            android:text="分享赚"/>
+            android:text="逛商圈"/>
 
         <RadioButton
             android:id="@+id/rb_mine"

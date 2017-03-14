@@ -2,7 +2,6 @@ package com.android.loter.ui.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-
 import com.android.loter.ui.factory.MainFragmentFactory;
 
 /**

@@ -147,39 +147,225 @@
 
                 </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_share_profit"
+                        style="@style/home_item_iv"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="热卖商品"/>
-                </LinearLayout>
+                        android:id="@+id/tv_share_profit"
+                        style="@style/home_item_tv"
+                        android:layout_toRightOf="@id/iv_share_profit"
+                        android:text="分享赚"/>
+
+                    <TextView
+                        android:id="@+id/tv_share_profit_eng"
+                        style="@style/home_item_tv_eng"
+                        android:layout_toRightOf="@id/tv_share_profit"
+                        android:text="Sharing makes"/>
+
+                    <ImageView
+                        android:id="@+id/iv_more_tasks"
+                        style="@style/home_item_iv_right"/>
+
+                    <TextView
+                        android:id="@+id/tv_more_tasks"
+                        style="@style/home_item_tv_right"
+                        android:layout_toLeftOf="@id/iv_more_tasks"
+                        android:text="更多任务"/>
+
+                </RelativeLayout>
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView"
+                    android:id="@+id/recyclerView_sharing_makes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
                 <LinearLayout
+                    style="@style/home_item_ad_ll">
+
+                    <ImageView
+                        android:id="@+id/iv_ad_1"
+                        style="@style/home_item_ad"/>
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:id="@+id/iv_ad_2"
+                        style="@style/home_item_ad"/>
+                </LinearLayout>
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_hot_lives"
+                        style="@style/home_item_iv"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_hot_lives"
+                        style="@style/home_item_tv"
+                        android:layout_toRightOf="@id/iv_hot_lives"
+                        android:text="红人视频"/>
+
+                    <TextView
+                        android:id="@+id/tv_hot_lives_eng"
+                        style="@style/home_item_tv_eng"
+                        android:layout_toRightOf="@id/tv_hot_lives"
+                        android:text="Recommended merchants"/>
+
+                    <ImageView
+                        android:id="@+id/iv_more_lives"
+                        style="@style/home_item_iv_right"/>
+
+                    <TextView
+                        android:id="@+id/tv_more_lives"
+                        style="@style/home_item_tv_right"
+                        android:layout_toLeftOf="@id/iv_more_lives"
+                        android:text="更多视频"/>
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView_lives"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+                <LinearLayout
+                    style="@style/home_item_ad_ll">
+
+                    <ImageView
+                        android:id="@+id/iv_ad_3"
+                        style="@style/home_item_ad"/>
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:id="@+id/iv_ad_4"
+                        style="@style/home_item_ad"/>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_recommended_merchants"
+                        style="@style/home_item_iv"/>
+
+                    <TextView
+                        android:id="@+id/tv_recommended_merchants"
+                        style="@style/home_item_tv"
+                        android:layout_toRightOf="@id/iv_recommended_merchants"
                         android:text="推荐商家"/>
-                </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_recommended_merchants_eng"
+                        style="@style/home_item_tv_eng"
+                        android:layout_toRightOf="@id/tv_recommended_merchants"
+                        android:text="Recommended merchants"/>
+
+                    <ImageView
+                        android:id="@+id/iv_more_merchants"
+                        style="@style/home_item_iv_right"/>
+
+                    <TextView
+                        android:id="@+id/tv_more_merchants"
+                        style="@style/home_item_tv_right"
+                        android:layout_toLeftOf="@id/iv_more_merchants"
+                        android:text="更多商家"/>
+
+                </RelativeLayout>
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerView2"
+                    android:id="@+id/recyclerView_merchants"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+                <LinearLayout
+                    style="@style/home_item_ad_ll">
+
+                    <ImageView
+                        android:id="@+id/iv_ad_5"
+                        style="@style/home_item_ad"/>
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:id="@+id/iv_ad_6"
+                        style="@style/home_item_ad"/>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_hot_sales"
+                        style="@style/home_item_iv"/>
+
+                    <TextView
+                        android:id="@+id/tv_hot_sales"
+                        style="@style/home_item_tv"
+                        android:layout_toRightOf="@id/iv_hot_sales"
+                        android:text="热卖商品"/>
+
+                    <TextView
+                        android:id="@+id/tv_hot_sales_eng"
+                        style="@style/home_item_tv_eng"
+                        android:layout_toRightOf="@id/tv_hot_sales"
+                        android:text="Hot products"/>
+
+                    <ImageView
+                        android:id="@+id/iv_more_product"
+                        style="@style/home_item_iv_right"/>
+
+                    <TextView
+                        android:id="@+id/tv_more_product"
+                        style="@style/home_item_tv_right"
+                        android:layout_toLeftOf="@id/iv_more_product"
+                        android:text="更多商品"/>
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView_products"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+                <LinearLayout
+                    style="@style/home_item_ad_ll">
+
+                    <ImageView
+                        android:id="@+id/iv_ad_7"
+                        style="@style/home_item_ad"/>
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="match_parent"/>
+
+                    <ImageView
+                        android:id="@+id/iv_ad_8"
+                        style="@style/home_item_ad"/>
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>

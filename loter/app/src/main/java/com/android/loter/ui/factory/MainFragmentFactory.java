@@ -25,11 +25,11 @@ public class MainFragmentFactory {
             if(position == 0){
                 baseFragment = new HomeFragment();
             }else if(position == 1){
-                baseFragment = new BusinessFragment();
+                baseFragment = new ProfitFragment();
             }else if(position == 2){
                 baseFragment = new LiveFragment();
             }else if(position == 3){
-                baseFragment = new ProfitFragment();
+                baseFragment = new BusinessFragment();
             }else if(position == 4){
                 baseFragment = new MineFragment();
             }

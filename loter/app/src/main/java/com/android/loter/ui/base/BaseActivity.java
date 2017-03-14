@@ -29,6 +29,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import retrofit2.HttpException;
+import rx.Subscription;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -44,6 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static final int BAD_GATEWAY = 502;
     private static final int SERVICE_UNAVAILABLE = 503;
     private static final int GATEWAY_TIMEOUT = 504;
+    protected Subscription subscription;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +65,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         AppManager.getAppManager().finishActivity(this);
+        unsubscribe();
+    }
+
+    protected void unsubscribe() {
+        if (subscription != null && !subscription.isUnsubscribed()) {
+            //用于取消订阅
+            subscription.unsubscribe();
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.android.loter.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -7,12 +8,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.android.loter.R;
+import com.android.loter.inter.CallbackChangeFragment;
 import com.android.loter.inter.OnItemClickListener;
+import com.android.loter.ui.activity.BusinessActivity;
+import com.android.loter.ui.activity.ProductActivity;
 import com.android.loter.ui.adapter.CommonAdapter;
 import com.android.loter.ui.adapter.ImageLoopAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
@@ -22,6 +27,7 @@ import com.android.loter.ui.widget.AdvertisingPoint;
 import com.android.loter.ui.widget.MyNoSlippingViewPager;
 import com.android.loter.ui.widget.MyPtrClassicFrameLayout;
 import com.android.loter.util.ScreenUtil;
+import com.android.loter.util.imageloader.ImageLoaderUtil;
 import com.android.loter.util.log.Logger;
 
 import java.util.ArrayList;
@@ -30,6 +36,7 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
@@ -45,8 +52,6 @@ import rx.schedulers.Schedulers;
 public class HomeFragment extends BaseFragment {
 
     private static final String TAG = "HomeFragment";
-    @BindView(R.id.recyclerView)
-    RecyclerView mRecyclerView;
     //轮播图
     @BindView(R.id.viewPager)
     MyNoSlippingViewPager mViewPager;
@@ -55,12 +60,35 @@ public class HomeFragment extends BaseFragment {
     LinearLayout mLlPoint;
     @BindView(R.id.rl_advertising)
     RelativeLayout mRlAdvertising;
-    @BindView(R.id.recyclerView2)
-    RecyclerView mRecyclerView2;
     @BindView(R.id.ptr_layout)
     MyPtrClassicFrameLayout mPtrLayout;
     @BindView(R.id.scrollView)
     ScrollView mScrollView;
+    @BindView(R.id.recyclerView_sharing_makes)
+    RecyclerView mRecyclerViewSharingMakes;
+    @BindView(R.id.recyclerView_lives)
+    RecyclerView mRecyclerViewLives;
+    @BindView(R.id.recyclerView_merchants)
+    RecyclerView mRecyclerViewMerchants;
+    @BindView(R.id.recyclerView_products)
+    RecyclerView mRecyclerViewProducts;
+
+    @BindView(R.id.iv_ad_1)
+    ImageView mIvAd1;
+    @BindView(R.id.iv_ad_2)
+    ImageView mIvAd2;
+    @BindView(R.id.iv_ad_3)
+    ImageView mIvAd3;
+    @BindView(R.id.iv_ad_4)
+    ImageView mIvAd4;
+    @BindView(R.id.iv_ad_5)
+    ImageView mIvAd5;
+    @BindView(R.id.iv_ad_6)
+    ImageView mIvAd6;
+    @BindView(R.id.iv_ad_7)
+    ImageView mIvAd7;
+    @BindView(R.id.iv_ad_8)
+    ImageView mIvAd8;
 
     //广告地址列表
     private List<String> imgUrlList;
@@ -70,6 +98,8 @@ public class HomeFragment extends BaseFragment {
     private int preAdvertisingSelect = -1;
     //当前显示广告
     private int nowAdvertisingSelect = 0;
+
+    private CallbackChangeFragment mCallbackChangeFragment;
 
     public static BaseFragment newInstance() {
         HomeFragment homeFragment = new HomeFragment();
@@ -90,8 +120,6 @@ public class HomeFragment extends BaseFragment {
         stringList.add("2 - ");
         stringList.add("3 - ");
         stringList.add("4 - ");
-        stringList.add("5 - ");
-        stringList.add("6 - ");
         CommonAdapter commonAdapter = new CommonAdapter<String>(getActivity(), R.layout.layout_test, stringList) {
 
             @Override
@@ -100,19 +128,42 @@ public class HomeFragment extends BaseFragment {
                 holder.setText(R.id.tv_test, s + " : " + holder.getLayoutPosition());
             }
         };
-        mRecyclerView.setAdapter(commonAdapter);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.addItemDecoration(new MarginDecoration(getActivity()));
 
-        mRecyclerView2.setAdapter(commonAdapter);
-        mRecyclerView2.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        mRecyclerView2.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView2.addItemDecoration(new MarginDecoration(getActivity()));
+        mRecyclerViewSharingMakes.setAdapter(commonAdapter);
+        mRecyclerViewSharingMakes.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecyclerViewSharingMakes.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerViewSharingMakes.addItemDecoration(new MarginDecoration(getActivity()));
+
+        mRecyclerViewLives.setAdapter(commonAdapter);
+        mRecyclerViewLives.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecyclerViewLives.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerViewLives.addItemDecoration(new MarginDecoration(getActivity()));
+
+        mRecyclerViewMerchants.setAdapter(commonAdapter);
+        mRecyclerViewMerchants.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecyclerViewMerchants.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerViewMerchants.addItemDecoration(new MarginDecoration(getActivity()));
+
+
+        mRecyclerViewProducts.setAdapter(commonAdapter);
+        mRecyclerViewProducts.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        mRecyclerViewProducts.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerViewProducts.addItemDecoration(new MarginDecoration(getActivity()));
 
         //解决scrollView嵌套recyclerView卡顿
-        mRecyclerView.setNestedScrollingEnabled(false);
-        mRecyclerView2.setNestedScrollingEnabled(false);
+        mRecyclerViewSharingMakes.setNestedScrollingEnabled(false);
+        mRecyclerViewLives.setNestedScrollingEnabled(false);
+        mRecyclerViewMerchants.setNestedScrollingEnabled(false);
+        mRecyclerViewProducts.setNestedScrollingEnabled(false);
+
+        ImageLoaderUtil.getInstance().loadImage("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1489394689&di=bd853f96f6aadf1e78a0b457ce7d12b6&src=http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1508/26/c7/11740466_1440561922117.jpg", R.mipmap.ic_launcher, mIvAd1);
+        ImageLoaderUtil.getInstance().loadImage("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1489394689&di=bd853f96f6aadf1e78a0b457ce7d12b6&src=http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1508/26/c7/11740466_1440561922117.jpg", R.mipmap.ic_launcher, mIvAd2);
+        ImageLoaderUtil.getInstance().loadImage("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1489394689&di=bd853f96f6aadf1e78a0b457ce7d12b6&src=http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1508/26/c7/11740466_1440561922117.jpg", R.mipmap.ic_launcher, mIvAd3);
+        ImageLoaderUtil.getInstance().loadImage("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1489394689&di=bd853f96f6aadf1e78a0b457ce7d12b6&src=http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1508/26/c7/11740466_1440561922117.jpg", R.mipmap.ic_launcher, mIvAd4);
+        ImageLoaderUtil.getInstance().loadImage("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1489394689&di=bd853f96f6aadf1e78a0b457ce7d12b6&src=http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1508/26/c7/11740466_1440561922117.jpg", R.mipmap.ic_launcher, mIvAd5);
+        ImageLoaderUtil.getInstance().loadImage("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1489394689&di=bd853f96f6aadf1e78a0b457ce7d12b6&src=http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1508/26/c7/11740466_1440561922117.jpg", R.mipmap.ic_launcher, mIvAd6);
+        ImageLoaderUtil.getInstance().loadImage("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1489394689&di=bd853f96f6aadf1e78a0b457ce7d12b6&src=http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1508/26/c7/11740466_1440561922117.jpg", R.mipmap.ic_launcher, mIvAd7);
+        ImageLoaderUtil.getInstance().loadImage("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1489394689&di=bd853f96f6aadf1e78a0b457ce7d12b6&src=http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1508/26/c7/11740466_1440561922117.jpg", R.mipmap.ic_launcher, mIvAd8);
     }
 
     /**
@@ -258,4 +309,43 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.bind(this, rootView);
         return rootView;
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallbackChangeFragment = (CallbackChangeFragment)context;
+    }
+
+    /**
+     * 更多任务
+     */
+    @OnClick(R.id.tv_more_tasks)
+    public void mTvMoreTasks() {
+        mCallbackChangeFragment.changeFragment(1);
+    }
+
+    /**
+     * 更多视频
+     */
+    @OnClick(R.id.tv_more_lives)
+    public void mTvMoreLives() {
+        mCallbackChangeFragment.changeFragment(2);
+    }
+
+    /**
+     * 更多商家
+     */
+    @OnClick(R.id.tv_more_merchants)
+    public void mTvMoreMerchants() {
+        openActivity(BusinessActivity.class);
+    }
+
+    /**
+     * 更多商品
+     */
+    @OnClick(R.id.tv_more_product)
+    public void mTvMoreProduct() {
+        openActivity(ProductActivity.class);
+    }
+
 }
