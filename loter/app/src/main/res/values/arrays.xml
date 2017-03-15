@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="product">
+        <item>商品</item>
+        <item>详情</item>
+        <item>评价</item>
+    </string-array>
+
+</resources>

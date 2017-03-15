@@ -68,6 +68,10 @@
             android:name=".ui.activity.ScannerActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".ui.activity.ProductDetailActivity"
+            android:screenOrientation="portrait"/>
+
 
         <!-- 百度地图api key -->
         <meta-data

@@ -88,4 +88,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'me.dm7.barcodescanner:zxing:1.9'
     compile 'me.yokeyword:fragmentation:0.10.1'
+
+    compile 'se.emilsjolander:stickylistheaders:2.7.0'
 }

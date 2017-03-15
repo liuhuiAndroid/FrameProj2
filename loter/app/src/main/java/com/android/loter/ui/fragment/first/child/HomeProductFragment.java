@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.loter.R;
+import com.android.loter.ui.activity.ProductDetailActivity;
 import com.android.loter.ui.adapter.CommonAdapter;
+import com.android.loter.ui.adapter.MultiItemTypeAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
 import com.android.loter.ui.adapter.wrapper.LoadMoreWrapper;
 import com.android.loter.ui.base.BaseBackFragment;
@@ -95,6 +97,17 @@ public class HomeProductFragment extends BaseBackFragment {
                     imgGood.setLayoutParams(params);
                 }
             };
+            mCommonAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
+                    openActivity(ProductDetailActivity.class);
+                }
+
+                @Override
+                public boolean onItemLongClick(View view, RecyclerView.ViewHolder holder, int position) {
+                    return false;
+                }
+            });
             mLoadMoreWrapper = new LoadMoreWrapper(mCommonAdapter);
             mLoadMoreWrapper.setLoadMoreView(LayoutInflater.from(getActivity()).inflate(R.layout.footer_view_load_more, mRecyclerView, false));
             mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
