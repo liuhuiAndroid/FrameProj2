@@ -1,6 +1,7 @@
 package com.android.loter.ui.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.android.loter.R;
@@ -22,6 +23,7 @@ import com.android.loter.ui.widget.BottomBarTab;
 import com.android.loter.util.BusUtil;
 import com.android.loter.util.CommonEvent;
 import com.android.loter.util.log.Logger;
+import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -53,6 +55,7 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+        BusUtil.getBus().register(this);
         if (savedInstanceState == null) {
             mFragments[FIRST] = LoterFirstFragment.newInstance();
             mFragments[SECOND] = LoterSecondFragment.newInstance();
@@ -147,4 +150,18 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
         mBottomBar.setCurrentItem(which);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BusUtil.getBus().unregister(this);
+    }
+
+    @Subscribe
+    public void bottombarStatusEvent(CommonEvent.BottombarStatusEvent bottombarStatusEvent){
+        if(bottombarStatusEvent.getStatus() == 0) {
+            mBottomBar.setVisibility(View.VISIBLE);
+        }else{
+            mBottomBar.setVisibility(View.GONE);
+        }
+    }
 }

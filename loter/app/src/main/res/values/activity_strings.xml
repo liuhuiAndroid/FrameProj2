@@ -40,7 +40,8 @@
     <string name="scanneractivity_permission_camera_deny">没有相机权限，扫一扫功无法使用!</string>
 
 
-    <!--ProductDetailActivity-->
-    <string name="productdetailactivity_title">商品详情页</string>
+    <!--Fragment-->
+    <string name="productdetailfragment_title">商品详情页</string>
+    <string name="sellerhomepagefragment_title">商户主页</string>
 
 </resources>

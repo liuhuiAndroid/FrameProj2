@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.GravityEnum;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.loter.R;
 import com.android.loter.ui.adapter.CommonAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
@@ -146,6 +149,18 @@ public class HomeSellerFragment extends BaseBackFragment {
         mPtrLayout.setLastUpdateTimeRelateObject(this);
         //viewpager滑动时禁用下拉
         mPtrLayout.disableWhenHorizontalMove(true);
+    }
+
+    @OnClick(R.id.iv_sort)
+    public void mIvSort(){
+        boolean wrapInScrollView = true;
+        new MaterialDialog.Builder(_mActivity)
+                .title("123")
+                .customView(R.layout.dialog_seller_sort, wrapInScrollView)
+                .itemsGravity(GravityEnum.START)
+                .show();
+
+
     }
 
 }

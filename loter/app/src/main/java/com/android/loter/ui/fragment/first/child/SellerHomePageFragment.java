@@ -17,48 +17,56 @@ import com.android.loter.ui.adapter.MultiItemTypeAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
 import com.android.loter.ui.adapter.wrapper.LoadMoreWrapper;
 import com.android.loter.ui.base.BaseBackFragment;
-import com.android.loter.ui.widget.MyPtrClassicFrameLayout;
 import com.android.loter.util.ScreenUtil;
+import com.android.loter.util.imageloader.ImageLoaderUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import in.srain.cube.views.ptr.PtrDefaultHandler;
-import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrHandler;
 
 /**
  * Created by we-win on 2017/3/15.
  */
 
-public class HomeProductFragment extends BaseBackFragment {
+public class SellerHomePageFragment extends BaseBackFragment {
 
-    @BindView(R.id.tv_empty)
-    TextView mTvEmpty;
+    @BindView(R.id.tv_title)
+    TextView mTvTitle;
+    @BindView(R.id.imageView)
+    ImageView mImageView;
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    @BindView(R.id.ptr_layout)
-    MyPtrClassicFrameLayout mPtrLayout;
+    @BindView(R.id.tv_empty)
+    TextView mTvEmpty;
 
     private GridLayoutManager mGridLayoutManager;
     private List<String> mStringList;
     private CommonAdapter mCommonAdapter;
     private LoadMoreWrapper mLoadMoreWrapper;
 
-    public static HomeProductFragment newInstance() {
-        HomeProductFragment fragment = new HomeProductFragment();
+    public static SellerHomePageFragment newInstance() {
+        SellerHomePageFragment fragment = new SellerHomePageFragment();
         return fragment;
     }
 
     @Override
     protected int bindLayout() {
-        return R.layout.fragment_home_product;
+        return R.layout.fragment_seller_homepage;
     }
 
     @Override
     protected void initData() {
+        mTvTitle.setText(getResources().getString(R.string.sellerhomepagefragment_title));
+
+        ViewGroup.LayoutParams layoutParams = mImageView.getLayoutParams();
+        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        layoutParams.height = ScreenUtil.width(baseActivity).px * 312 / 750;
+        mImageView.setLayoutParams(layoutParams);
+
+        ImageLoaderUtil.getInstance().loadImage("http://p1.meituan.net/movie/aa3c2bac8f9aaa557e63e20d56e214dc192471.jpg", R.mipmap.ic_launcher, mImageView);
+
         mStringList = new ArrayList<>();
         loadData();
     }
@@ -75,9 +83,7 @@ public class HomeProductFragment extends BaseBackFragment {
         } else {
             mTvEmpty.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.GONE);
-            if (mPtrLayout.isShown()) {
-                mPtrLayout.refreshComplete();
-            }
+
         }
     }
 
@@ -131,43 +137,13 @@ public class HomeProductFragment extends BaseBackFragment {
             mCommonAdapter.notifyDataSetChanged();
         }
 
-        if (mPtrLayout.isShown()) {
-            mPtrLayout.refreshComplete();
-        }
 
     }
 
+
     @Override
     protected void bindEvent() {
-        mPtrLayout.setPtrHandler(new PtrHandler() {
-            @Override
-            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                if (mGridLayoutManager != null) {
-                    boolean result = false;
-                    if (mGridLayoutManager.findFirstVisibleItemPosition() == 0) {
-                        final View topChildView = mRecyclerView.getChildAt(0);
-                        result = topChildView.getTop() == 0;
-                    }
-                    return result && PtrDefaultHandler
-                            .checkContentCanBePulledDown(frame, content, header);
-                } else {
-                    return PtrDefaultHandler
-                            .checkContentCanBePulledDown(frame, content, header);
-                }
-            }
 
-            @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
-                if (mPtrLayout.isShown()) {
-                    mPtrLayout.refreshComplete();
-                }
-            }
-
-        });
-        //显示时间
-        mPtrLayout.setLastUpdateTimeRelateObject(this);
-        //viewpager滑动时禁用下拉
-        mPtrLayout.disableWhenHorizontalMove(true);
     }
 
     @Override
