@@ -2,10 +2,10 @@ package com.android.loter.ui.factory;
 
 import com.android.loter.ui.base.BaseFragment;
 import com.android.loter.ui.fragment.BusinessFragment;
-import com.android.loter.ui.fragment.HomeFragment;
 import com.android.loter.ui.fragment.LiveFragment;
 import com.android.loter.ui.fragment.MineFragment;
 import com.android.loter.ui.fragment.ProfitFragment;
+import com.android.loter.ui.fragment.first.child.HomeFragment;
 
 import java.util.HashMap;
 import java.util.Map;

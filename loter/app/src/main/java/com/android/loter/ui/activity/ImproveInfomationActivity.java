@@ -32,7 +32,7 @@ public class ImproveInfomationActivity extends BaseActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle savedInstanceState) {
         setImgBack(mImgBack);
         mTvTitle.setText(getResources().getString(R.string.improveinfomationactivity_title));
 

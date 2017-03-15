@@ -44,7 +44,7 @@ public class ScannerActivity extends BaseActivity implements ZXingScannerView.Re
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle savedInstanceState) {
         setImgBack(mImgBack);
         mTvTitle.setText(getResources().getString(R.string.scanneractivity_title));
 

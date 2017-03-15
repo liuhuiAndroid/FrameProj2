@@ -5,6 +5,7 @@
     <color name="colorAccent">#fa7339</color>
     <color name="line_grey">#dadce6</color>
     <color name="line_default">#f3f3f3</color>
+    <color name="tab_unselect">#c9c9c9</color>
 
     <!--MainActivity-->
     <color name="tab_normal">#636363</color>

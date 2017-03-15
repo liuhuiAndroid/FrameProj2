@@ -1,5 +1,6 @@
 package com.android.loter.ui.activity;
 
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
@@ -46,7 +47,7 @@ public class RegisterActivity extends BaseActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle savedInstanceState) {
         setImgBack(mImgBack);
         mTvTitle.setText(getResources().getString(R.string.registeractivity_title));
     }

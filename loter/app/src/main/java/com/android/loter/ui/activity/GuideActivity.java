@@ -1,5 +1,6 @@
 package com.android.loter.ui.activity;
 
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
 import com.android.loter.R;
@@ -24,13 +25,13 @@ public class GuideActivity extends BaseActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle savedInstanceState) {
         ButterKnife.bind(this);
         GuideViewPagerAdapter guideViewPagerAdapter = new GuideViewPagerAdapter(mViewPager, GuideActivity.this);
         guideViewPagerAdapter.setOnButtonClickListener(new OnButtonClickListener() {
             @Override
             public void onButtonClick() {
-                openActivity(MainActivity.class);
+                openActivity(MainActivity2.class);
                 finish();
             }
         });

@@ -3,12 +3,12 @@ package com.android.loter.ui.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
+import me.yokeyword.fragmentation.SupportFragment;
 import rx.Subscription;
 
 /**
@@ -16,7 +16,7 @@ import rx.Subscription;
  *
  * @des ${TODO}
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends SupportFragment {
     protected Subscription subscription;
     protected View rootView;
     protected BaseActivity baseActivity;
@@ -38,10 +38,13 @@ public abstract class BaseFragment extends Fragment {
             baseActivity = (BaseActivity) getActivity();
         }
 
+        initToolbar(rootView);
         initData();
         bindEvent();
         return rootView;
     }
+
+    protected void initToolbar(View rootView){};
 
     public void openActivity(Class<?> cls) {
         startActivity(new Intent(baseActivity, cls));

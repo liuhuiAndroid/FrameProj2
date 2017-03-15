@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.net.ParseException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -28,10 +27,11 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import me.yokeyword.fragmentation.SupportActivity;
 import retrofit2.HttpException;
 import rx.Subscription;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends SupportActivity {
 
     private static final String TAG = "BaseActivity";
     private InputMethodManager inputMethodManager;
@@ -56,7 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        initData();
+        initData(savedInstanceState);
         bindEvent();
 //        Debug.i(TAG, "getCurrentActivityName = " + getCurrentActivityName(BaseActivity.this));
     }
@@ -118,8 +118,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 初始化数据
+     * @param savedInstanceState
      */
-    protected abstract void initData();
+    protected abstract void initData(Bundle savedInstanceState);
 
     /**
      * 绑定控件事件

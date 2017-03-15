@@ -1,6 +1,7 @@
 package com.android.loter.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.android.loter.App;
 import com.android.loter.R;
@@ -23,7 +24,7 @@ public class AppStartActivity extends BaseActivity {
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle savedInstanceState) {
         if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
             finish();
             return;
@@ -48,7 +49,7 @@ public class AppStartActivity extends BaseActivity {
 
                         @Override
                         public void onNext(Long number) {
-                            openActivity(MainActivity.class);
+                            openActivity(MainActivity2.class);
                             finish();
                         }
                     });

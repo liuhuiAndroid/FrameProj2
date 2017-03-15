@@ -39,8 +39,13 @@
         <activity
             android:name=".ui.activity.GuideActivity"
             android:screenOrientation="portrait"/>
+
         <activity
             android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.activity.MainActivity2"
             android:screenOrientation="portrait"/>
 
         <activity
@@ -57,14 +62,6 @@
 
         <activity
             android:name=".ui.activity.ImproveInfomationActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity
-            android:name=".ui.activity.BusinessActivity"
-            android:screenOrientation="portrait"/>
-
-        <activity
-            android:name=".ui.activity.ProductActivity"
             android:screenOrientation="portrait"/>
 
         <activity

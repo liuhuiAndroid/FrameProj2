@@ -1,5 +1,6 @@
 package com.android.loter.ui.activity;
 
+import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -39,7 +40,7 @@ public class MainActivity extends BaseActivity implements CallbackChangeFragment
     }
 
     @Override
-    protected void initData() {
+    protected void initData(Bundle savedInstanceState) {
         ButterKnife.bind(this);
         MyMainFragmentPagerAdapter myMainFragmentPagerAdapter = new MyMainFragmentPagerAdapter(getSupportFragmentManager());
         mVpMain.setAdapter(myMainFragmentPagerAdapter);
