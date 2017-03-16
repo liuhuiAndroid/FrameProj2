@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorP">#fa804b</color>
     <color name="colorPrimary">#fa7339</color>
     <color name="colorPrimaryDark">#fa7339</color>
     <color name="colorAccent">#fa7339</color>
+
+    <color name="colorPrimaryDialog">#9a4723</color>
     <color name="line_grey">#dadce6</color>
     <color name="line_default">#f3f3f3</color>
     <color name="tab_unselect">#c9c9c9</color>

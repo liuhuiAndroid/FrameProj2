@@ -15,6 +15,7 @@ import com.android.loter.R;
 import com.android.loter.ui.adapter.CommonAdapter;
 import com.android.loter.ui.adapter.MultiItemTypeAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
+import com.android.loter.ui.adapter.wrapper.HeaderAndFooterWrapper;
 import com.android.loter.ui.adapter.wrapper.LoadMoreWrapper;
 import com.android.loter.ui.base.BaseBackFragment;
 import com.android.loter.util.ScreenUtil;
@@ -34,8 +35,6 @@ public class SellerHomePageFragment extends BaseBackFragment {
 
     @BindView(R.id.tv_title)
     TextView mTvTitle;
-    @BindView(R.id.imageView)
-    ImageView mImageView;
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.tv_empty)
@@ -59,13 +58,6 @@ public class SellerHomePageFragment extends BaseBackFragment {
     @Override
     protected void initData() {
         mTvTitle.setText(getResources().getString(R.string.sellerhomepagefragment_title));
-
-        ViewGroup.LayoutParams layoutParams = mImageView.getLayoutParams();
-        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
-        layoutParams.height = ScreenUtil.width(baseActivity).px * 312 / 750;
-        mImageView.setLayoutParams(layoutParams);
-
-        ImageLoaderUtil.getInstance().loadImage("http://p1.meituan.net/movie/aa3c2bac8f9aaa557e63e20d56e214dc192471.jpg", R.mipmap.ic_launcher, mImageView);
 
         mStringList = new ArrayList<>();
         loadData();
@@ -113,7 +105,18 @@ public class SellerHomePageFragment extends BaseBackFragment {
                     return false;
                 }
             });
-            mLoadMoreWrapper = new LoadMoreWrapper(mCommonAdapter);
+
+            HeaderAndFooterWrapper headerAndFooterWrapper = new HeaderAndFooterWrapper(mCommonAdapter);
+            View headView = LayoutInflater.from(getActivity()).inflate(R.layout.layout_header_seller_homepage, mRecyclerView, false);
+            headerAndFooterWrapper.addHeaderView(headView);
+            ImageView mImageView = (ImageView)headView.findViewById(R.id.imageView);
+            ViewGroup.LayoutParams layoutParams = mImageView.getLayoutParams();
+            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            layoutParams.height = ScreenUtil.width(baseActivity).px * 312 / 750;
+            mImageView.setLayoutParams(layoutParams);
+            ImageLoaderUtil.getInstance().loadImage("http://p1.meituan.net/movie/aa3c2bac8f9aaa557e63e20d56e214dc192471.jpg", R.mipmap.ic_launcher, mImageView);
+
+            mLoadMoreWrapper = new LoadMoreWrapper(headerAndFooterWrapper);
             mLoadMoreWrapper.setLoadMoreView(LayoutInflater.from(getActivity()).inflate(R.layout.footer_view_load_more, mRecyclerView, false));
             mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
                 @Override
@@ -130,6 +133,7 @@ public class SellerHomePageFragment extends BaseBackFragment {
                     }, 2000);
                 }
             });
+
             mRecyclerView.setAdapter(mLoadMoreWrapper);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
             //            mRecyclerView.addItemDecoration(new DividerGridItemDecoration(ProductActivity.this, 0));
