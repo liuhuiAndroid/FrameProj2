@@ -7,4 +7,19 @@
         <item>评价</item>
     </string-array>
 
+    <string-array name="live_sort">
+        <item>为您推荐</item>
+        <item>美妆护肤</item>
+        <item>手机数码</item>
+        <item>女装</item>
+        <item>男装</item>
+        <item>鞋靴</item>
+        <item>箱包</item>
+        <item>配饰</item>
+        <item>美食</item>
+        <item>家居</item>
+        <item>宠物</item>
+        <item>更多</item>
+    </string-array>
+
 </resources>

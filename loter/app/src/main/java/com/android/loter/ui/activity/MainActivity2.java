@@ -8,9 +8,9 @@ import com.android.loter.R;
 import com.android.loter.inter.CallbackChangeFragment;
 import com.android.loter.ui.base.BaseActivity;
 import com.android.loter.ui.base.BaseMainFragment;
-import com.android.loter.ui.fragment.BusinessFragment;
-import com.android.loter.ui.fragment.MineFragment;
-import com.android.loter.ui.fragment.ProfitFragment;
+import com.android.loter.ui.fragment.fourth.child.BusinessMapFragment;
+import com.android.loter.ui.fragment.fifth.child.MineFragment;
+import com.android.loter.ui.fragment.second.child.ProfitFragment;
 import com.android.loter.ui.fragment.fifth.LoterFifthFragment;
 import com.android.loter.ui.fragment.first.LoterFirstFragment;
 import com.android.loter.ui.fragment.first.child.HomeFragment;
@@ -111,7 +111,7 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
                     } else if (currentFragment instanceof LoterThirdFragment) {
                         currentFragment.popToChild(LiveFragment.class, false);
                     } else if (currentFragment instanceof LoterFourthFragment) {
-                        currentFragment.popToChild(BusinessFragment.class, false);
+                        currentFragment.popToChild(BusinessMapFragment.class, false);
                     } else if (currentFragment instanceof LoterFifthFragment) {
                         currentFragment.popToChild(MineFragment.class, false);
                     }
@@ -135,7 +135,7 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
         registerFragmentLifecycleCallbacks(new FragmentLifecycleCallbacks() {
             @Override
             public void onFragmentSupportVisible(SupportFragment fragment) {
-                Logger.i("onFragmentSupportVisible--->" + fragment.getClass().getSimpleName());
+//                Logger.i("onFragmentSupportVisible--->" + fragment.getClass().getSimpleName());
             }
         });
     }

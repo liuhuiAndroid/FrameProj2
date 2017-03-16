@@ -1,9 +1,10 @@
-package com.android.loter.ui.fragment;
+package com.android.loter.ui.fragment.fourth.child;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.android.loter.R;
 import com.android.loter.ui.activity.ScannerActivity;
 import com.android.loter.ui.base.BaseFragment;
+import com.android.loter.util.ToastUtil;
 import com.android.loter.util.log.Logger;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -39,7 +41,7 @@ import butterknife.OnClick;
  * Created by we-win on 2017/3/6.
  */
 
-public class BusinessFragment extends BaseFragment {
+public class BusinessMapFragment extends BaseFragment {
 
     private static final int REQUECT_CODE_LOCATION = 2;
     private static final int REQUECT_CODE_CAMERA = 3;
@@ -49,6 +51,9 @@ public class BusinessFragment extends BaseFragment {
     BaiduMap mBaiduMap;
     // 定位相关
     LocationClient mLocClient;
+    @BindView(R.id.tab_layout)
+    TabLayout mTabLayout;
+
 
     private Marker mMarkerA;
     public MyLocationListenner myListener = new MyLocationListenner();
@@ -59,17 +64,36 @@ public class BusinessFragment extends BaseFragment {
             .fromResource(R.drawable.icon_gcoding);
 
     public static BaseFragment newInstance() {
-        BusinessFragment baseFragment = new BusinessFragment();
+        BusinessMapFragment baseFragment = new BusinessMapFragment();
         return baseFragment;
     }
 
     @Override
     protected int bindLayout() {
-        return R.layout.fragment_business;
+        return R.layout.fragment_business_map;
     }
 
     @Override
     protected void initData() {
+        // 初始化tablayout
+        mTabLayout.addTab(mTabLayout.newTab().setText("商铺"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("商品"));
+        mTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                ToastUtil.Infotoast(_mActivity, tab.getText().toString());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
+        // 地图相关======================
         //初始化地图
         mBaiduMap = mBmapView.getMap();
         mBaiduMap
@@ -188,8 +212,8 @@ public class BusinessFragment extends BaseFragment {
 
             }
             return;
-        }else if (requestCode == REQUECT_CODE_CAMERA){
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED ) {
+        } else if (requestCode == REQUECT_CODE_CAMERA) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 openActivity(ScannerActivity.class);
             } else {
                 // Permission Denied
@@ -214,12 +238,10 @@ public class BusinessFragment extends BaseFragment {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-            Logger.i("MyLocationListenner 1");
             // map view 销毁后不在处理新接收的位置
             if (location == null || mBmapView == null) {
                 return;
             }
-            Logger.i("MyLocationListenner 2");
             MyLocationData locData = new MyLocationData.Builder()
                     .accuracy(location.getRadius())
                     // 此处设置开发者获取到的方向信息，顺时针0-360
@@ -242,7 +264,7 @@ public class BusinessFragment extends BaseFragment {
      * 消息
      */
     @OnClick(R.id.tv_message)
-    public void mTvMessage(){
+    public void mTvMessage() {
 
     }
 
@@ -250,7 +272,7 @@ public class BusinessFragment extends BaseFragment {
      * 活动
      */
     @OnClick(R.id.tv_activity)
-    public void mTvActivity(){
+    public void mTvActivity() {
 
     }
 
@@ -258,7 +280,7 @@ public class BusinessFragment extends BaseFragment {
      * 抢红包
      */
     @OnClick(R.id.tv_red_envelope)
-    public void mTvRedEnvelope(){
+    public void mTvRedEnvelope() {
 
     }
 
@@ -266,7 +288,7 @@ public class BusinessFragment extends BaseFragment {
      * 购物车
      */
     @OnClick(R.id.tv_shopping)
-    public void mTvShopping(){
+    public void mTvShopping() {
 
     }
 
@@ -274,8 +296,16 @@ public class BusinessFragment extends BaseFragment {
      * 扫一扫
      */
     @OnClick(R.id.tv_scanner)
-    public void mTvScanner(){
+    public void mTvScanner() {
         initCameraPermission();
+    }
+
+    /**
+     * 切换模式
+     */
+    @OnClick(R.id.iv_switch_mode)
+    public void mIvSwitchMode(){
+        start(BusinessListFragment.newInstance(),SINGLETASK);
     }
 
     /**
@@ -285,7 +315,7 @@ public class BusinessFragment extends BaseFragment {
         // Here, thisActivity is the current activity
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED ) {
+                != PackageManager.PERMISSION_GRANTED) {
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
                     Manifest.permission.ACCESS_FINE_LOCATION) || ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
@@ -308,4 +338,6 @@ public class BusinessFragment extends BaseFragment {
             openActivity(ScannerActivity.class);
         }
     }
+
+
 }

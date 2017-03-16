@@ -157,9 +157,30 @@
     </style>
 
     <!--立即购买-->
-    <style name="PopupAnimation" parent="android:Animation">
+    <style name="PopupBottomAnimation" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <!-- 分类-->
+    <style name="PopupTopAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/push_top_in</item>
+        <item name="android:windowExitAnimation">@anim/push_top_out</item>
+    </style>
+
+    <!-- TabLayout-->
+    <style name="tab_layout_view">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="tab_layout_line">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:background">@color/md_grey_500</item>
     </style>
 
 </resources>

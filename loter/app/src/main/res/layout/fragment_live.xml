@@ -1,43 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout android:id="@+id/rl_container"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <com.android.loter.ui.widget.MyPtrClassicFrameLayout
-        android:id="@+id/ptr_layout"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ll_top"
-        android:layout_marginTop="1px"
-        app:ptr_duration_to_close="300"
-        app:ptr_duration_to_close_header="500"
-        app:ptr_keep_header_when_refresh="true"
-        app:ptr_pull_to_fresh="false"
-        app:ptr_ratio_of_header_height_to_refresh="1.0"
-        app:ptr_resistance="1.7">
+        android:orientation="vertical">
 
-        <RelativeLayout
+        <include
+            layout="@layout/include_actionbar_address_search_sort"/>
+
+        <com.android.loter.ui.widget.MyPtrClassicFrameLayout
+            android:id="@+id/ptr_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll_top"
+            android:layout_marginTop="1px"
+            app:ptr_duration_to_close="300"
+            app:ptr_duration_to_close_header="500"
+            app:ptr_keep_header_when_refresh="true"
+            app:ptr_pull_to_fresh="false"
+            app:ptr_ratio_of_header_height_to_refresh="1.0"
+            app:ptr_resistance="1.7">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_empty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textColor="@color/md_grey_800"
-                android:text="@string/universal_empty"
-                android:layout_marginTop="8dp"
-                android:visibility="invisible"/>
-        </RelativeLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-    </com.android.loter.ui.widget.MyPtrClassicFrameLayout>
+                <TextView
+                    android:id="@+id/tv_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/universal_empty"
+                    android:textColor="@color/md_grey_800"
+                    android:visibility="invisible"/>
+            </RelativeLayout>
 
-</LinearLayout>
+        </com.android.loter.ui.widget.MyPtrClassicFrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewMask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#60000000"
+        android:visibility="gone"/>
+</RelativeLayout>

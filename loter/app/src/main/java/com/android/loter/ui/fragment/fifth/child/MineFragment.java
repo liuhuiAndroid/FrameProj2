@@ -1,4 +1,4 @@
-package com.android.loter.ui.fragment;
+package com.android.loter.ui.fragment.fifth.child;
 
 import com.android.loter.R;
 import com.android.loter.ui.base.BaseFragment;

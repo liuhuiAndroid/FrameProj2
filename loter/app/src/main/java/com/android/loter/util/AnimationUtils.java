@@ -12,14 +12,14 @@ public class AnimationUtils {
     public static void showAlpha(View v) {
         v.setVisibility(View.VISIBLE);
         AlphaAnimation alphaAnimation = new AlphaAnimation(0, 1);
-        alphaAnimation.setDuration(400);
+        alphaAnimation.setDuration(500);
         v.startAnimation(alphaAnimation);
     }
 
     public static void hideAlpha(View v) {
         v.setVisibility(View.GONE);
         AlphaAnimation alphaAnimation = new AlphaAnimation(1, 0);
-        alphaAnimation.setDuration(400);
+        alphaAnimation.setDuration(500);
         v.startAnimation(alphaAnimation);
     }
 }

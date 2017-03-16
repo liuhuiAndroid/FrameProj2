@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.android.loter.R;
 import com.android.loter.ui.base.BaseMainFragment;
-import com.android.loter.ui.fragment.LiveFragment;
+import com.android.loter.ui.fragment.third.child.LiveFragment;
 
 /**
  * Created by we-win on 2017/3/14.

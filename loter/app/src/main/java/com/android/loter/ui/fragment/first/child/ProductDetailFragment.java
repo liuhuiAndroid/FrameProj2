@@ -18,7 +18,6 @@ import com.android.loter.ui.widget.SelectPopupWindow;
 import com.android.loter.util.AnimationUtils;
 import com.android.loter.util.BusUtil;
 import com.android.loter.util.CommonEvent;
-import com.android.loter.util.log.Logger;
 import com.jaeger.library.StatusBarUtil;
 
 import butterknife.BindView;
@@ -169,7 +168,6 @@ public class ProductDetailFragment extends BaseBackFragment implements StickyLis
             @Override
             public void onDismiss() {
                 AnimationUtils.hideAlpha(mViewMask);
-                Logger.i("setTranslucent 0");
                 StatusBarUtil.setColor(_mActivity,getResources().getColor(R.color.colorPrimary),0);
             }
         });
@@ -177,7 +175,6 @@ public class ProductDetailFragment extends BaseBackFragment implements StickyLis
         menuWindow_immediately_indiana.showAtLocation(mRlContainer, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
         AnimationUtils.showAlpha(mViewMask);
         StatusBarUtil.setColor(_mActivity,getResources().getColor(R.color.colorPrimaryDialog),0);
-        Logger.i("setTranslucent 100");
     }
 
     @Override

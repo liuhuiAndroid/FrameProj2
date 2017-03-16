@@ -1,11 +1,11 @@
 package com.android.loter.ui.factory;
 
 import com.android.loter.ui.base.BaseFragment;
-import com.android.loter.ui.fragment.BusinessFragment;
-import com.android.loter.ui.fragment.LiveFragment;
-import com.android.loter.ui.fragment.MineFragment;
-import com.android.loter.ui.fragment.ProfitFragment;
+import com.android.loter.ui.fragment.fourth.child.BusinessMapFragment;
+import com.android.loter.ui.fragment.fifth.child.MineFragment;
+import com.android.loter.ui.fragment.second.child.ProfitFragment;
 import com.android.loter.ui.fragment.first.child.HomeFragment;
+import com.android.loter.ui.fragment.third.child.LiveFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class MainFragmentFactory {
             }else if(position == 2){
                 baseFragment = LiveFragment.newInstance();
             }else if(position == 3){
-                baseFragment = BusinessFragment.newInstance();
+                baseFragment = BusinessMapFragment.newInstance();
             }else if(position == 4){
                 baseFragment = MineFragment.newInstance();
             }

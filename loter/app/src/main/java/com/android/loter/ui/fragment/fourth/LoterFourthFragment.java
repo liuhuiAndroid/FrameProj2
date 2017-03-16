@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.android.loter.R;
 import com.android.loter.ui.base.BaseMainFragment;
-import com.android.loter.ui.fragment.BusinessFragment;
+import com.android.loter.ui.fragment.fourth.child.BusinessMapFragment;
 
 /**
  * Created by we-win on 2017/3/14.
@@ -39,7 +39,7 @@ public class LoterFourthFragment extends BaseMainFragment {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         if (savedInstanceState == null) {
-            loadRootFragment(R.id.fl_first_container, BusinessFragment.newInstance());
+            loadRootFragment(R.id.fl_first_container, BusinessMapFragment.newInstance());
         }
     }
 }

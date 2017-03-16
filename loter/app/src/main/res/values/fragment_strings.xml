@@ -3,4 +3,7 @@
     <!--HomeFragment-->
     <string name="homefragment_search_hint">请输入您想要的商品</string>
 
+    <!--BusinessFragment-->
+    <string name="businessfragment_search_hint">输入你想查找的商户名、商品名、红人名</string>
+
 </resources>

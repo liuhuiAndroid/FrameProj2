@@ -1,4 +1,4 @@
-package com.android.loter.ui.fragment;
+package com.android.loter.ui.fragment.second.child;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.android.loter.R;
 import com.android.loter.ui.adapter.CommonAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
+import com.android.loter.ui.adapter.wrapper.HeaderAndFooterWrapper;
 import com.android.loter.ui.adapter.wrapper.LoadMoreWrapper;
 import com.android.loter.ui.base.BaseFragment;
 import com.android.loter.ui.decoration.DividerGridItemDecoration;
@@ -31,26 +32,28 @@ import in.srain.cube.views.ptr.PtrHandler;
  * Created by we-win on 2017/3/14.
  */
 
-public class TaskForwardFragment extends BaseFragment {
+public class TaskReadFragment extends BaseFragment {
+
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
     @BindView(R.id.tv_empty)
     TextView mTvEmpty;
     @BindView(R.id.ptr_layout)
     MyPtrClassicFrameLayout mPtrLayout;
+
     private LinearLayoutManager mLinearLayoutManager;
     private List<String> mStringList;
     private CommonAdapter mCommonAdapter;
     private LoadMoreWrapper mLoadMoreWrapper;
 
     public static BaseFragment newInstance() {
-        TaskForwardFragment taskForwardFragment = new TaskForwardFragment();
-        return taskForwardFragment;
+        TaskReadFragment taskReadFragment = new TaskReadFragment();
+        return taskReadFragment;
     }
 
     @Override
     protected int bindLayout() {
-        return R.layout.fragment_task_forward;
+        return R.layout.fragment_task_read;
     }
 
     @Override
@@ -114,14 +117,15 @@ public class TaskForwardFragment extends BaseFragment {
         if (mCommonAdapter == null) {
             mLinearLayoutManager = new LinearLayoutManager(getActivity());
             mRecyclerView.setLayoutManager(mLinearLayoutManager);
-            mCommonAdapter = new CommonAdapter<String>(getActivity(), R.layout.layout_test, mStringList) {
+            mCommonAdapter = new CommonAdapter<String>(getActivity(), R.layout.layout_task, mStringList) {
                 @Override
                 protected void convert(ViewHolder holder, String s, int position) {
-                    holder.setImageUrl(R.id.iv_test, "http://p0.meituan.net/movie/07b7f22e2ca1820f8b240f50ee6aa269481512.jpg");
-                    holder.setText(R.id.tv_test, s + " : " + holder.getLayoutPosition());
+                    holder.setImageUrl(R.id.imageView, "http://p0.meituan.net/movie/07b7f22e2ca1820f8b240f50ee6aa269481512.jpg");
                 }
             };
-            mLoadMoreWrapper = new LoadMoreWrapper(mCommonAdapter);
+            HeaderAndFooterWrapper headerAndFooterWrapper = new HeaderAndFooterWrapper(mCommonAdapter);
+            headerAndFooterWrapper.addHeaderView(LayoutInflater.from(getActivity()).inflate(R.layout.layout_blank_line, mRecyclerView, false));
+            mLoadMoreWrapper = new LoadMoreWrapper(headerAndFooterWrapper);
             mLoadMoreWrapper.setLoadMoreView(LayoutInflater.from(getActivity()).inflate(R.layout.footer_view_load_more, mRecyclerView, false));
             mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener()
             {
@@ -144,7 +148,7 @@ public class TaskForwardFragment extends BaseFragment {
             });
             mRecyclerView.setAdapter(mLoadMoreWrapper);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-            mRecyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity(), 0));
+            mRecyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity(), 1));
         }else{
             mCommonAdapter.notifyDataSetChanged();
         }

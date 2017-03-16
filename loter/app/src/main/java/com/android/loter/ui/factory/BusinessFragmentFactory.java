@@ -1,9 +1,8 @@
 package com.android.loter.ui.factory;
 
 import com.android.loter.ui.base.BaseFragment;
-import com.android.loter.ui.fragment.second.child.TaskForwardFragment;
-import com.android.loter.ui.fragment.second.child.TaskLiveFragment;
-import com.android.loter.ui.fragment.second.child.TaskReadFragment;
+import com.android.loter.ui.fragment.fourth.child.BusinessProductListFragment;
+import com.android.loter.ui.fragment.fourth.child.BusinessSellerListFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ import java.util.Map;
  * Created by we-win on 2017/3/14.
  */
 
-public class TaskFragmentFactory {
+public class BusinessFragmentFactory {
 
     private static final String TAG = "TaskFragmentFactory";
     private static Map<Integer,BaseFragment> fragmentMap = new HashMap<Integer, BaseFragment>();
@@ -21,17 +20,14 @@ public class TaskFragmentFactory {
         baseFragment = fragmentMap.get(position);
         if(baseFragment == null){
             if(position == 0){
-                baseFragment = TaskLiveFragment.newInstance();
+                baseFragment = BusinessProductListFragment.newInstance();
             }else if(position == 1){
-                baseFragment = TaskForwardFragment.newInstance();
-            }else if(position == 2){
-                baseFragment = TaskReadFragment.newInstance();
+                baseFragment = BusinessSellerListFragment.newInstance();
             }
             if(baseFragment!=null){
                 fragmentMap.put(position,baseFragment);
             }
         }
-
         return baseFragment;
     }
 

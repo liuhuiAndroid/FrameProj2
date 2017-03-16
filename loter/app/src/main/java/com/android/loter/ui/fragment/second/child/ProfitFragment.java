@@ -1,10 +1,11 @@
-package com.android.loter.ui.fragment;
+package com.android.loter.ui.fragment.second.child;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import com.android.loter.R;
 import com.android.loter.ui.adapter.MyTaskFragmentPagerAdapter;
+import com.android.loter.ui.base.BaseBackFragment;
 import com.android.loter.ui.base.BaseFragment;
 
 import butterknife.BindView;
@@ -13,7 +14,7 @@ import butterknife.BindView;
  * Created by we-win on 2017/3/6.
  */
 
-public class ProfitFragment extends BaseFragment {
+public class ProfitFragment extends BaseBackFragment {
 
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
