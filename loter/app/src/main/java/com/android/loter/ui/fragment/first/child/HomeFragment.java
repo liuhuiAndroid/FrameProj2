@@ -347,9 +347,7 @@ public class HomeFragment extends BaseFragment {
     @OnClick(R.id.tv_more_product)
     public void mTvMoreProduct() {
 //        openActivity(ProductActivity.class);
-
-        HomeProductFragment fragment = HomeProductFragment.newInstance();
-        start(fragment);
+        start(HomeProductFragment.newInstance());
     }
 
 }

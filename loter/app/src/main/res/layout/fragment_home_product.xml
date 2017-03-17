@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <include layout="@layout/include_actionbar_normal"/>
 
@@ -17,8 +17,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="综合排序"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="综合排序"/>
 
         <TextView
             android:id="@+id/tv_buzz"
@@ -47,7 +47,6 @@
         android:id="@+id/ptr_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/ll_top"
         android:layout_marginTop="1px"
         app:ptr_duration_to_close="300"
         app:ptr_duration_to_close_header="500"
@@ -64,19 +63,16 @@
                 android:id="@+id/tv_empty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textColor="@color/md_grey_800"
-                android:text="@string/universal_empty"
                 android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:text="@string/universal_empty"
+                android:textColor="@color/md_grey_800"
                 android:visibility="invisible"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"/>
+                android:layout_height="match_parent"/>
         </RelativeLayout>
 
     </com.android.loter.ui.widget.MyPtrClassicFrameLayout>

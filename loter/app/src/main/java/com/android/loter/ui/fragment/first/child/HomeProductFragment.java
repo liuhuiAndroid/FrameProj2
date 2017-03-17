@@ -15,8 +15,10 @@ import com.android.loter.R;
 import com.android.loter.ui.adapter.CommonAdapter;
 import com.android.loter.ui.adapter.MultiItemTypeAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
+import com.android.loter.ui.adapter.wrapper.HeaderAndFooterWrapper;
 import com.android.loter.ui.adapter.wrapper.LoadMoreWrapper;
-import com.android.loter.ui.base.BaseBackFragment;
+import com.android.loter.ui.base.BaseFragment;
+import com.android.loter.ui.decoration.DividerGridItemDecoration;
 import com.android.loter.ui.widget.MyPtrClassicFrameLayout;
 import com.android.loter.util.ScreenUtil;
 
@@ -33,7 +35,7 @@ import in.srain.cube.views.ptr.PtrHandler;
  * Created by we-win on 2017/3/15.
  */
 
-public class HomeProductFragment extends BaseBackFragment {
+public class HomeProductFragment extends BaseFragment {
 
     @BindView(R.id.tv_empty)
     TextView mTvEmpty;
@@ -107,7 +109,9 @@ public class HomeProductFragment extends BaseBackFragment {
                     return false;
                 }
             });
-            mLoadMoreWrapper = new LoadMoreWrapper(mCommonAdapter);
+            HeaderAndFooterWrapper headerAndFooterWrapper = new HeaderAndFooterWrapper(mCommonAdapter);
+            headerAndFooterWrapper.addHeaderView(LayoutInflater.from(getActivity()).inflate(R.layout.layout_blank_line_small, mRecyclerView, false));
+            mLoadMoreWrapper = new LoadMoreWrapper(headerAndFooterWrapper);
             mLoadMoreWrapper.setLoadMoreView(LayoutInflater.from(getActivity()).inflate(R.layout.footer_view_load_more, mRecyclerView, false));
             mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
                 @Override
@@ -126,7 +130,7 @@ public class HomeProductFragment extends BaseBackFragment {
             });
             mRecyclerView.setAdapter(mLoadMoreWrapper);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-            //            mRecyclerView.addItemDecoration(new DividerGridItemDecoration(ProductActivity.this, 0));
+//            mRecyclerView.addItemDecoration(new DividerGridItemDecoration(_mActivity, 0));
         } else {
             mCommonAdapter.notifyDataSetChanged();
         }

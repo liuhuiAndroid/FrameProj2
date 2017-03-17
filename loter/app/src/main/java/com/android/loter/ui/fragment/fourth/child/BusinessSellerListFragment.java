@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.android.loter.R;
 import com.android.loter.ui.adapter.CommonAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
+import com.android.loter.ui.adapter.wrapper.HeaderAndFooterWrapper;
 import com.android.loter.ui.adapter.wrapper.LoadMoreWrapper;
 import com.android.loter.ui.base.BaseFragment;
 import com.android.loter.ui.widget.MyPtrClassicFrameLayout;
@@ -84,7 +85,9 @@ public class BusinessSellerListFragment extends BaseFragment {
                 holder.setImageUrl(R.id.iv_business, "http://p0.meituan.net/movie/07b7f22e2ca1820f8b240f50ee6aa269481512.jpg");
             }
         };
-        mLoadMoreWrapper = new LoadMoreWrapper(mCommonAdapter);
+        HeaderAndFooterWrapper headerAndFooterWrapper = new HeaderAndFooterWrapper(mCommonAdapter);
+        headerAndFooterWrapper.addHeaderView(LayoutInflater.from(getActivity()).inflate(R.layout.layout_blank_line_small, mRecyclerView, false));
+        mLoadMoreWrapper = new LoadMoreWrapper(headerAndFooterWrapper);
         mLoadMoreWrapper.setLoadMoreView(LayoutInflater.from(getActivity()).inflate(R.layout.footer_view_load_more, mRecyclerView, false));
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override

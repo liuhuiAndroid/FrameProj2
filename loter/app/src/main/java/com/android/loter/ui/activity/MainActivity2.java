@@ -8,21 +8,20 @@ import com.android.loter.R;
 import com.android.loter.inter.CallbackChangeFragment;
 import com.android.loter.ui.base.BaseActivity;
 import com.android.loter.ui.base.BaseMainFragment;
-import com.android.loter.ui.fragment.fourth.child.BusinessMapFragment;
-import com.android.loter.ui.fragment.fifth.child.MineFragment;
-import com.android.loter.ui.fragment.second.child.ProfitFragment;
 import com.android.loter.ui.fragment.fifth.LoterFifthFragment;
+import com.android.loter.ui.fragment.fifth.child.MineFragment;
 import com.android.loter.ui.fragment.first.LoterFirstFragment;
 import com.android.loter.ui.fragment.first.child.HomeFragment;
 import com.android.loter.ui.fragment.fourth.LoterFourthFragment;
+import com.android.loter.ui.fragment.fourth.child.BusinessMapFragment;
 import com.android.loter.ui.fragment.second.LoterSecondFragment;
+import com.android.loter.ui.fragment.second.child.ProfitFragment;
 import com.android.loter.ui.fragment.third.LoterThirdFragment;
 import com.android.loter.ui.fragment.third.child.LiveFragment;
 import com.android.loter.ui.widget.BottomBar;
 import com.android.loter.ui.widget.BottomBarTab;
 import com.android.loter.util.BusUtil;
 import com.android.loter.util.CommonEvent;
-import com.android.loter.util.log.Logger;
 import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
@@ -80,11 +79,11 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
             mFragments[FIVE] = findFragment(LoterFifthFragment.class);
         }
 
-        mBottomBar.addItem(new BottomBarTab(this, R.mipmap.ic_launcher))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher));
+        mBottomBar.addItem(new BottomBarTab(this, R.mipmap.ic_launcher,"首页"))
+                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher,"分享赚"))
+                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher,"GO直播"))
+                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher,"逛商圈"))
+                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher,"我"));
 
         mBottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override

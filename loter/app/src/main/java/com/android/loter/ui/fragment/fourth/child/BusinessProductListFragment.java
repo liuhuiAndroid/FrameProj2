@@ -14,12 +14,12 @@ import com.android.loter.R;
 import com.android.loter.ui.adapter.CommonAdapter;
 import com.android.loter.ui.adapter.MultiItemTypeAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
+import com.android.loter.ui.adapter.wrapper.HeaderAndFooterWrapper;
 import com.android.loter.ui.adapter.wrapper.LoadMoreWrapper;
 import com.android.loter.ui.base.BaseFragment;
 import com.android.loter.ui.fragment.first.child.ProductDetailFragment;
 import com.android.loter.ui.widget.MyPtrClassicFrameLayout;
 import com.android.loter.util.ScreenUtil;
-import com.android.loter.util.log.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,15 +60,8 @@ public class BusinessProductListFragment extends BaseFragment {
     @Override
     protected void initData() {
         loadData();
-        Logger.i("initData");
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadData();
-        Logger.i("onResume");
-    }
 
     private void loadData() {
         mStringList.clear();
@@ -114,7 +107,9 @@ public class BusinessProductListFragment extends BaseFragment {
                 return false;
             }
         });
-        mLoadMoreWrapper = new LoadMoreWrapper(mCommonAdapter);
+        HeaderAndFooterWrapper headerAndFooterWrapper = new HeaderAndFooterWrapper(mCommonAdapter);
+        headerAndFooterWrapper.addHeaderView(LayoutInflater.from(getActivity()).inflate(R.layout.layout_blank_line_small, mRecyclerView, false));
+        mLoadMoreWrapper = new LoadMoreWrapper(headerAndFooterWrapper);
         mLoadMoreWrapper.setLoadMoreView(LayoutInflater.from(getActivity()).inflate(R.layout.footer_view_load_more, mRecyclerView, false));
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
             @Override

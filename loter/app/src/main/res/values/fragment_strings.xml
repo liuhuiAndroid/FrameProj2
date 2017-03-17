@@ -6,4 +6,7 @@
     <!--BusinessFragment-->
     <string name="businessfragment_search_hint">输入你想查找的商户名、商品名、红人名</string>
 
+    <!--ShoppingTrolleyFragment-->
+    <string name="shoppingtrolleyfragment_title">购物车</string>
+
 </resources>

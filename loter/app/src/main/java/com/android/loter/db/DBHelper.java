@@ -17,6 +17,7 @@ public class DBHelper {
     private static DaoSession daoSession;
 
     private AttendaceDao mAttendaceDao;
+    private ShoppingTrolleyDao mShoppingTrolleyDao;
 
 
     /**
@@ -81,4 +82,14 @@ public class DBHelper {
     }
 
 
+    public ShoppingTrolleyDao getShoppingTrolleyDao() {
+        if (mShoppingTrolleyDao == null) {
+            instance.setShoppingTrolleyDao(getDaoSession(mContext).getShoppingTrolleyDao());
+        }
+        return mShoppingTrolleyDao;
+    }
+
+    public void setShoppingTrolleyDao(ShoppingTrolleyDao shoppingTrolleyDao) {
+        mShoppingTrolleyDao = shoppingTrolleyDao;
+    }
 }

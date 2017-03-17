@@ -21,6 +21,7 @@ public class TaskFragmentFactory {
         baseFragment = fragmentMap.get(position);
         if(baseFragment == null){
             if(position == 0){
+//                baseFragment = HomeProductFragment.newInstance();
                 baseFragment = TaskLiveFragment.newInstance();
             }else if(position == 1){
                 baseFragment = TaskForwardFragment.newInstance();

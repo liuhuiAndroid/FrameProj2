@@ -289,7 +289,7 @@ public class BusinessMapFragment extends BaseFragment {
      */
     @OnClick(R.id.tv_shopping)
     public void mTvShopping() {
-
+        start(ShoppingTrolleyFragment.newInstance());
     }
 
     /**

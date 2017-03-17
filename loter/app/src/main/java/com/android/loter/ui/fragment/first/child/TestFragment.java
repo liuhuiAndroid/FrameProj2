@@ -8,35 +8,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.GravityEnum;
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.loter.R;
 import com.android.loter.ui.adapter.CommonAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
 import com.android.loter.ui.adapter.wrapper.HeaderAndFooterWrapper;
 import com.android.loter.ui.adapter.wrapper.LoadMoreWrapper;
-import com.android.loter.ui.base.BaseBackFragment;
+import com.android.loter.ui.base.BaseFragment;
+import com.android.loter.ui.decoration.DividerGridItemDecoration;
 import com.android.loter.ui.widget.MyPtrClassicFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 
 /**
- * Created by we-win on 2017/3/15.
+ * Created by we-win on 2017/3/14.
  */
 
-public class HomeSellerFragment extends BaseBackFragment {
+public class TestFragment extends BaseFragment {
 
-    @BindView(R.id.tv_empty)
-    TextView mTvEmpty;
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
+    @BindView(R.id.tv_empty)
+    TextView mTvEmpty;
     @BindView(R.id.ptr_layout)
     MyPtrClassicFrameLayout mPtrLayout;
 
@@ -45,14 +43,14 @@ public class HomeSellerFragment extends BaseBackFragment {
     private CommonAdapter mCommonAdapter;
     private LoadMoreWrapper mLoadMoreWrapper;
 
-    public static HomeSellerFragment newInstance() {
-        HomeSellerFragment fragment = new HomeSellerFragment();
-        return fragment;
+    public static BaseFragment newInstance() {
+        TestFragment taskLiveFragment = new TestFragment();
+        return taskLiveFragment;
     }
 
     @Override
     protected int bindLayout() {
-        return R.layout.fragment_home_seller;
+        return R.layout.fragment_test;
     }
 
     @Override
@@ -60,6 +58,7 @@ public class HomeSellerFragment extends BaseBackFragment {
         mStringList = new ArrayList<>();
         loadData();
     }
+
 
     private void loadData() {
         mStringList.clear();
@@ -83,14 +82,14 @@ public class HomeSellerFragment extends BaseBackFragment {
         if (mCommonAdapter == null) {
             mLinearLayoutManager = new LinearLayoutManager(getActivity());
             mRecyclerView.setLayoutManager(mLinearLayoutManager);
-            mCommonAdapter = new CommonAdapter<String>(getActivity(), R.layout.layout_business, mStringList) {
+            mCommonAdapter = new CommonAdapter<String>(getActivity(), R.layout.layout_task, mStringList) {
                 @Override
                 protected void convert(ViewHolder holder, String s, int position) {
-                    holder.setImageUrl(R.id.iv_business, "http://p0.meituan.net/movie/07b7f22e2ca1820f8b240f50ee6aa269481512.jpg");
+                    holder.setImageUrl(R.id.imageView, "http://p0.meituan.net/movie/07b7f22e2ca1820f8b240f50ee6aa269481512.jpg");
                 }
             };
             HeaderAndFooterWrapper headerAndFooterWrapper = new HeaderAndFooterWrapper(mCommonAdapter);
-            headerAndFooterWrapper.addHeaderView(LayoutInflater.from(getActivity()).inflate(R.layout.layout_blank_line_small, mRecyclerView, false));
+            headerAndFooterWrapper.addHeaderView(LayoutInflater.from(getActivity()).inflate(R.layout.layout_blank_line, mRecyclerView, false));
             mLoadMoreWrapper = new LoadMoreWrapper(headerAndFooterWrapper);
             mLoadMoreWrapper.setLoadMoreView(LayoutInflater.from(getActivity()).inflate(R.layout.footer_view_load_more, mRecyclerView, false));
             mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
@@ -110,7 +109,7 @@ public class HomeSellerFragment extends BaseBackFragment {
             });
             mRecyclerView.setAdapter(mLoadMoreWrapper);
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-//            mRecyclerView.addItemDecoration(new DividerGridItemDecoration(_mActivity, 0));
+            mRecyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity(), 1));
         } else {
             mCommonAdapter.notifyDataSetChanged();
         }
@@ -152,18 +151,6 @@ public class HomeSellerFragment extends BaseBackFragment {
         mPtrLayout.setLastUpdateTimeRelateObject(this);
         //viewpager滑动时禁用下拉
         mPtrLayout.disableWhenHorizontalMove(true);
-    }
-
-    @OnClick(R.id.iv_sort)
-    public void mIvSort(){
-        boolean wrapInScrollView = true;
-        new MaterialDialog.Builder(_mActivity)
-                .title("123")
-                .customView(R.layout.dialog_seller_sort, wrapInScrollView)
-                .itemsGravity(GravityEnum.START)
-                .show();
-
-
     }
 
 }
