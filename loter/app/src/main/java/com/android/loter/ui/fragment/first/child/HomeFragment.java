@@ -16,6 +16,7 @@ import android.widget.ScrollView;
 import com.android.loter.R;
 import com.android.loter.inter.CallbackChangeFragment;
 import com.android.loter.inter.OnItemClickListener;
+import com.android.loter.ui.activity.SearchActivity;
 import com.android.loter.ui.adapter.CommonAdapter;
 import com.android.loter.ui.adapter.ImageLoopAdapter;
 import com.android.loter.ui.adapter.base.ViewHolder;
@@ -311,7 +312,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mCallbackChangeFragment = (CallbackChangeFragment)context;
+        mCallbackChangeFragment = (CallbackChangeFragment) context;
     }
 
     /**
@@ -335,7 +336,7 @@ public class HomeFragment extends BaseFragment {
      */
     @OnClick(R.id.tv_more_merchants)
     public void mTvMoreMerchants() {
-//        openActivity(BusinessActivity.class);
+        //        openActivity(BusinessActivity.class);
 
         HomeSellerFragment fragment = HomeSellerFragment.newInstance();
         start(fragment);
@@ -346,8 +347,13 @@ public class HomeFragment extends BaseFragment {
      */
     @OnClick(R.id.tv_more_product)
     public void mTvMoreProduct() {
-//        openActivity(ProductActivity.class);
+        //        openActivity(ProductActivity.class);
         start(HomeProductFragment.newInstance());
+    }
+
+    @OnClick(R.id.edit_search)
+    public void mEditSearch(){
+        openActivity(SearchActivity.class);
     }
 
 }

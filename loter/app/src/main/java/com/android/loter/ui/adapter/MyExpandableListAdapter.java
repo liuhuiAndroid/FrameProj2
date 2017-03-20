@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.loter.R;
@@ -18,7 +17,6 @@ import com.android.loter.inter.listener.OnShoppingCartChangeListener;
 import com.android.loter.inter.listener.ShoppingCartBiz;
 import com.android.loter.model.entity.ShoppingCartBean;
 import com.android.loter.util.ToastUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 

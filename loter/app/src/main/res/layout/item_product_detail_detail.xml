@@ -6,6 +6,13 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:text="———— 详情介绍 ————"
+        android:textColor="@color/md_black_1000"
+        android:background="@color/md_grey_300"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="600dp"
         android:text="detail"
         android:background="@color/md_green_500"/>

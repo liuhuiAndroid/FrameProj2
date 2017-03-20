@@ -9,4 +9,10 @@
     <!--ShoppingTrolleyFragment-->
     <string name="shoppingtrolleyfragment_title">购物车</string>
 
+    <!--MineFragment-->
+    <string name="minefragment_title">个人中心</string>
+
+    <!--SettingFragment-->
+    <string name="settingfragment_title">个人设置</string>
+
 </resources>

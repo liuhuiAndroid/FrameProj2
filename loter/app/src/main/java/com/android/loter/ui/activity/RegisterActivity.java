@@ -137,7 +137,7 @@ public class RegisterActivity extends BaseActivity {
             return;
         }
 
-        openActivity(ImproveInfomationActivity.class);
+//        openActivity(ImproveInfomationActivity.class);
         finish();
     }
 

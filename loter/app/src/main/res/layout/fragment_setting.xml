@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include
+        layout="@layout/include_actionbar_normal"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_forget_password"
+        style="@style/item_rl">
+
+        <TextView
+            style="@style/item_text"
+            android:text="忘记密码"/>
+
+        <ImageView
+            style="@style/mine_item_arrow_right"
+            app:srcCompat="@drawable/ic_arrow_right"/>
+
+    </RelativeLayout>
+
+    <View
+        style="@style/line_3"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_modify_password"
+        style="@style/item_rl">
+
+        <TextView
+            style="@style/item_text"
+            android:text="修改密码"/>
+
+        <ImageView
+            style="@style/mine_item_arrow_right"
+            app:srcCompat="@drawable/ic_arrow_right"/>
+
+    </RelativeLayout>
+
+    <View
+        style="@style/line_3"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_version_code"
+        style="@style/item_rl">
+
+        <TextView
+            style="@style/item_text"
+            android:text="版本号"/>
+
+        <ImageView
+            android:id="@+id/iv_version_code"
+            style="@style/mine_item_arrow_right"
+            app:srcCompat="@drawable/ic_arrow_right"/>
+
+        <TextView
+            android:id="@+id/tv_version_code"
+            style="@style/item_text"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/iv_version_code"
+            />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:text="退出登录"/>
+
+</LinearLayout>

@@ -1,12 +1,16 @@
 package com.android.loter.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.android.loter.App;
 import com.android.loter.R;
 import com.android.loter.inter.CallbackChangeFragment;
+import com.android.loter.inter.CallbackMineFragment;
 import com.android.loter.ui.base.BaseActivity;
+import com.android.loter.ui.base.BaseFragment;
 import com.android.loter.ui.base.BaseMainFragment;
 import com.android.loter.ui.fragment.fifth.LoterFifthFragment;
 import com.android.loter.ui.fragment.fifth.child.MineFragment;
@@ -22,9 +26,11 @@ import com.android.loter.ui.widget.BottomBar;
 import com.android.loter.ui.widget.BottomBarTab;
 import com.android.loter.util.BusUtil;
 import com.android.loter.util.CommonEvent;
+import com.android.loter.util.log.Logger;
 import com.squareup.otto.Subscribe;
 
 import butterknife.BindView;
+import io.github.lijunguan.imgselector.ImageSelector;
 import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation.helper.FragmentLifecycleCallbacks;
 
@@ -33,13 +39,16 @@ import me.yokeyword.fragmentation.helper.FragmentLifecycleCallbacks;
  * Created by we-win on 2017/3/14.
  */
 
-public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBackToFirstListener ,CallbackChangeFragment {
+public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBackToFirstListener, CallbackChangeFragment,CallbackMineFragment {
 
     public static final int FIRST = 0;
     public static final int SECOND = 1;
     public static final int THIRD = 2;
     public static final int FOURTH = 3;
     public static final int FIVE = 4;
+
+    public static final int REQUEST_LOGIN = 1001;
+    public static final int RESULT_LOGIN = 1002;
     @BindView(R.id.fl_container)
     FrameLayout mFlContainer;
     @BindView(R.id.bottomBar)
@@ -79,16 +88,20 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
             mFragments[FIVE] = findFragment(LoterFifthFragment.class);
         }
 
-        mBottomBar.addItem(new BottomBarTab(this, R.mipmap.ic_launcher,"首页"))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher,"分享赚"))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher,"GO直播"))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher,"逛商圈"))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher,"我"));
+        mBottomBar.addItem(new BottomBarTab(this, R.mipmap.ic_launcher, "首页"))
+                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher, "分享赚"))
+                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher, "GO直播"))
+                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher, "逛商圈"))
+                .addItem(new BottomBarTab(this, R.mipmap.ic_launcher, "我"));
 
         mBottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position, int prePosition) {
+                if (position == 4 && App.getSpUtil().getIS_LOGIN() != 1) {
+                    openActivity(LoginActivity.class, REQUEST_LOGIN);
+                }
                 showHideFragment(mFragments[position], mFragments[prePosition]);
+                Logger.i("setOnTabSelectedListener onTabSelected " + position);
             }
 
             @Override
@@ -98,6 +111,10 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
 
             @Override
             public void onTabReselected(int position) {
+                Logger.i("setOnTabSelectedListener onTabReselected " + position);
+                if (position == 4 && App.getSpUtil().getIS_LOGIN() != 1) {
+                    openActivity(LoginActivity.class, REQUEST_LOGIN);
+                }
                 SupportFragment currentFragment = mFragments[position];
                 int count = currentFragment.getChildFragmentManager().getBackStackEntryCount();
 
@@ -125,6 +142,7 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
                     BusUtil.getBus().post(new CommonEvent().new TabSelectedEvent(position));
                 }
             }
+
         });
     }
 
@@ -134,7 +152,7 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
         registerFragmentLifecycleCallbacks(new FragmentLifecycleCallbacks() {
             @Override
             public void onFragmentSupportVisible(SupportFragment fragment) {
-//                Logger.i("onFragmentSupportVisible--->" + fragment.getClass().getSimpleName());
+                //                Logger.i("onFragmentSupportVisible--->" + fragment.getClass().getSimpleName());
             }
         });
     }
@@ -156,11 +174,36 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
     }
 
     @Subscribe
-    public void bottombarStatusEvent(CommonEvent.BottombarStatusEvent bottombarStatusEvent){
-        if(bottombarStatusEvent.getStatus() == 0) {
+    public void bottombarStatusEvent(CommonEvent.BottombarStatusEvent bottombarStatusEvent) {
+        if (bottombarStatusEvent.getStatus() == 0) {
             mBottomBar.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             mBottomBar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Logger.i("resultCode = "+resultCode);
+        Logger.i("requestCode = "+requestCode);
+        if (resultCode == RESULT_LOGIN) {
+            mBottomBar.setCurrentItem(0);
+            Logger.i("setCurrentItem 0 ");
+        }else if (requestCode == ImageSelector.REQUEST_SELECT_IMAGE
+                && resultCode == -1) {
+            // 这里实现的比较挫 以后改
+            Logger.i("getTopFragment : "+getTopFragment());
+            Logger.i("findFragment(MineFragment.class) : "+findFragment("MineFragment"));
+            Logger.i("findFragment(InfomationFragment.class) : "+findFragment("InfomationFragment"));
+            mBaseFragment.onActivityResult(requestCode, resultCode, data);
+//            findChildFragment(InfomationFragment.class).onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    private BaseFragment mBaseFragment;
+    @Override
+    public void changeFragment(BaseFragment fragment) {
+        mBaseFragment = fragment;
     }
 }

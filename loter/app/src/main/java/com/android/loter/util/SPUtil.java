@@ -14,6 +14,7 @@ public class SPUtil {
     private final String PPG_DATA = "ppg_data";
     private final String USER_ID = "userid";
     private final String GUIDE = "guide";
+    private final String IS_LOGIN = "isLogin";
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -66,6 +67,14 @@ public class SPUtil {
 
     public int getGUIDE() {
         return getInt(GUIDE);
+    }
+
+    public void setIS_LOGIN(int is_login) {
+        save(IS_LOGIN, is_login);
+    }
+
+    public int getIS_LOGIN() {
+        return getInt(IS_LOGIN);
     }
 
 }

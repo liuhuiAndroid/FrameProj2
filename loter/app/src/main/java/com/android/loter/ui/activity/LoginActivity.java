@@ -5,10 +5,12 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.Selection;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.loter.App;
 import com.android.loter.R;
 import com.android.loter.ui.base.BaseActivity;
 import com.android.loter.util.PhoneUtil;
@@ -16,6 +18,8 @@ import com.android.loter.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static com.android.loter.ui.activity.MainActivity2.RESULT_LOGIN;
 
 /**
  * Created by we-win on 2017/3/9.
@@ -43,7 +47,13 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        setImgBack(mImgBack);
+        mImgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setResult(RESULT_LOGIN);
+                finish();
+            }
+        });
         mTvTitle.setText(getResources().getString(R.string.loginactivity_title));
     }
 
@@ -54,6 +64,10 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.btn_login)
     public void login() {
+        App.getSpUtil().setIS_LOGIN(1);
+        setResult(RESULT_LOGIN);
+        finish();
+
         String username = mEtUsername.getText().toString().trim();
         String password = mEtPassword.getText().toString().trim();
         if (TextUtils.isEmpty(username)) {
@@ -114,4 +128,10 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onBackPressedSupport() {
+//        super.onBackPressedSupport();
+        setResult(RESULT_LOGIN);
+        finish();
+    }
 }

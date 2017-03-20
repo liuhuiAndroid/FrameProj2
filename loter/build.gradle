@@ -1,4 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'com.jfrog.bintray'
 
 buildscript {
     repositories {
@@ -13,6 +14,8 @@ buildscript {
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.5.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
     }
 }
 
@@ -28,6 +31,23 @@ allprojects {
 //            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
 //        }
 //    }
+}
+
+ext {
+    configuration = [
+            packageName       : "io.lijunguan.github.sample",
+            buildToolsVersion : "23.0.3",
+            compileVersion    : 23,
+            minSDK           : 11,
+            targetSDK         : 23,
+            version_code      : 1,
+            version_name      : "1.0"
+    ]
+    libs         = [
+            supportVersion    : "23.2.1",
+            glide             : "3.7.0",
+            butterknife       : "7.0.1"
+    ]
 }
 
 task clean(type: Delete) {
