@@ -26,3 +26,8 @@
 -keep class com.zhy.m.** {*;}
 -keep interface com.zhy.m.** { *; }
 -keep class **$$PermissionProxy { *; }
+
+#AndroidPicker
+-keepattributes InnerClasses,Signature
+-keepattributes *Annotation*
+-keep class cn.qqtheme.framework.entity.** { *;}

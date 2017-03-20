@@ -96,20 +96,20 @@ public class LoginActivity extends BaseActivity {
         openActivity(ForgetPasswordActivity.class);
     }
 
-    @OnClick(R.id.img_wx)
-    public void img_wx() {
-
-    }
-
-    @OnClick(R.id.img_qq)
-    public void img_qq() {
-
-    }
-
-    @OnClick(R.id.img_sina)
-    public void img_sina() {
-
-    }
+//    @OnClick(R.id.img_wx)
+//    public void img_wx() {
+//
+//    }
+//
+//    @OnClick(R.id.img_qq)
+//    public void img_qq() {
+//
+//    }
+//
+//    @OnClick(R.id.img_sina)
+//    public void img_sina() {
+//
+//    }
 
     /**
      * 密码明暗文切换

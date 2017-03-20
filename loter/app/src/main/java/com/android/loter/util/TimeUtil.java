@@ -13,6 +13,11 @@ import java.util.Locale;
  */
 public class TimeUtil {
 
+    public static String getTime(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return format.format(date);
+    }
+
     public static String getFullTime() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         String time = format.format(new Date());
