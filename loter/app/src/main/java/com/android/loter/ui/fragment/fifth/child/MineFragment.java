@@ -64,8 +64,8 @@ public class MineFragment extends BaseFragment {
         mCallbackMineFragment = (CallbackMineFragment) context;
     }
 
-    @OnClick(R.id.btn_call)
-    public void mBtnCall() {
+    @OnClick(R.id.tv_call)
+    public void mTvCall() {
         new MaterialDialog.Builder(_mActivity)
                 .content("拨打4008-521-521")
                 .positiveText("拨打")
@@ -79,6 +79,38 @@ public class MineFragment extends BaseFragment {
                     }
                 })
                 .show();
+    }
+
+    /**
+     * 提现明细
+     */
+    @OnClick(R.id.tv_withdrawed_cash_detail)
+    public void mTvWithdrawedCashDetail() {
+        start(WithdrawCashDetailFragment.newInstance());
+    }
+
+    /**
+     * 充值
+     */
+    @OnClick(R.id.btn_recharge)
+    public void btnRecharge() {
+        start(RechargeFragment.newInstance());
+    }
+
+    /**
+     * 提现
+     */
+    @OnClick(R.id.btn_withdraw_cash)
+    public void btnWithdrawCash() {
+        start(WithdrawCashFragment.newInstance());
+    }
+
+    /**
+     * 我的订单
+     */
+    @OnClick(R.id.rl_my_order)
+    public void rlMyOrder() {
+        start(MyOrderFragment.newInstance());
     }
 
 }

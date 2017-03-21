@@ -61,6 +61,12 @@
         <item name="android:background">@color/line_default</item>
     </style>
 
+    <style name="line_8">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">8dp</item>
+        <item name="android:background">@color/line_default</item>
+    </style>
+
     <style name="input_normal">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -100,6 +106,15 @@
         <item name="android:paddingRight">16dp</item>
         <item name="android:background">@android:color/white</item>
     </style>
+
+    <style name="item_rl_120">
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:background">@android:color/white</item>
+    </style>
+
     <style name="item_text">
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_height">wrap_content</item>
@@ -234,6 +249,17 @@
     <style name="AnimationPreviewPop" mce_bogus="1" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/enter</item>
         <item name="android:windowExitAnimation">@anim/exit</item>
+    </style>
+
+    <style name="RedPacketDialog" parent="android:style/Theme.Dialog">
+        <!--背景颜色及透明程度-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--是否有标题 -->
+        <item name="android:windowNoTitle">false</item>
+        <!--是否浮现在activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <!--是否模糊-->
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
 </resources>

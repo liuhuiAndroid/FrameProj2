@@ -1,9 +1,10 @@
 package com.android.loter.ui.factory;
 
 import com.android.loter.ui.base.BaseFragment;
-import com.android.loter.ui.fragment.second.child.TaskForwardFragment;
-import com.android.loter.ui.fragment.second.child.TaskLiveFragment;
-import com.android.loter.ui.fragment.second.child.TaskReadFragment;
+import com.android.loter.ui.fragment.fifth.child.OrderObligationFragment;
+import com.android.loter.ui.fragment.fifth.child.OrderReceivingGoodsFragment;
+import com.android.loter.ui.fragment.fifth.child.OrderWaitingEvaluateFragment;
+import com.android.loter.ui.fragment.fifth.child.OrderWaitingForDeliveryFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,20 +13,22 @@ import java.util.Map;
  * Created by we-win on 2017/3/14.
  */
 
-public class TaskFragmentFactory {
+public class OrderFragmentFactory {
 
-    private static final String TAG = "TaskFragmentFactory";
+    private static final String TAG = "OrderFragmentFactory";
     private static Map<Integer,BaseFragment> fragmentMap = new HashMap<Integer, BaseFragment>();
     public static BaseFragment createFragment(int position){
         BaseFragment baseFragment = null;
         baseFragment = fragmentMap.get(position);
         if(baseFragment == null){
             if(position == 0){
-                baseFragment = TaskLiveFragment.newInstance();
+                baseFragment = OrderObligationFragment.newInstance();
             }else if(position == 1){
-                baseFragment = TaskForwardFragment.newInstance();
+                baseFragment = OrderWaitingForDeliveryFragment.newInstance();
             }else if(position == 2){
-                baseFragment = TaskReadFragment.newInstance();
+                baseFragment = OrderReceivingGoodsFragment.newInstance();
+            }else if(position == 3){
+                baseFragment = OrderWaitingEvaluateFragment.newInstance();
             }
             if(baseFragment!=null){
                 fragmentMap.put(position,baseFragment);

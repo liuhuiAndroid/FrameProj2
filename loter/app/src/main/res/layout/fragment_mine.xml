@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
@@ -7,10 +8,288 @@
     <include
         layout="@layout/include_actionbar_mine"/>
 
-    <Button
-        android:id="@+id/btn_call"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="客服电话"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="我是分销"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="我是商家"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="我是红人"/>
+
+                <TextView
+                    android:id="@+id/tv_call"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="客服热线"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="消息"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="购物车"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="背包"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="好友"/>
+            </LinearLayout>
+
+            <View
+                style="@style/line_8"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_recharge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="充值"/>
+
+                    <Button
+                        android:id="@+id/btn_withdraw_cash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="提现"/>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_test3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的结算"
+                    android:textSize="18sp"/>
+
+                <RelativeLayout
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_test3"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/tv_test1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="已提现"/>
+
+                    <TextView
+                        android:id="@+id/tv_test2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_weight="1"
+                        android:text="可用余额"/>
+
+                    <TextView
+                        android:id="@+id/tv_withdrawed_cash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_test1"
+                        android:layout_weight="1"
+                        android:text="100250.00"/>
+
+                    <TextView
+                        android:id="@+id/tv_withdrawed_cash_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_withdrawed_cash"
+                        android:layout_weight="1"
+                        android:text="明细"
+                        android:textColor="@color/md_blue_500"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/tv_test2"
+                        android:layout_weight="1"
+                        android:text="100250.00"/>
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_my_order"
+                style="@style/item_rl">
+
+                <TextView
+                    style="@style/item_text"
+                    android:text="我的订单"/>
+
+                <ImageView
+                    style="@style/mine_item_arrow_right"
+                    app:srcCompat="@drawable/ic_arrow_right"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_my_invite"
+                style="@style/item_rl">
+
+                <TextView
+                    style="@style/item_text"
+                    android:text="我的邀请"/>
+
+                <ImageView
+                    style="@style/mine_item_arrow_right"
+                    app:srcCompat="@drawable/ic_arrow_right"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_my_footprint"
+                style="@style/item_rl">
+
+                <TextView
+                    style="@style/item_text"
+                    android:text="我的足迹"/>
+
+                <ImageView
+                    style="@style/mine_item_arrow_right"
+                    app:srcCompat="@drawable/ic_arrow_right"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_my_follow"
+                style="@style/item_rl_120"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/item_text"
+                    android:text="我的关注"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="商铺"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="商品"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="红人"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_my_task"
+                style="@style/item_rl_120"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/item_text"
+                    android:text="我的任务"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="阅读任务"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="转发任务"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="直播任务"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -2,7 +2,6 @@ package com.android.loter;
 
 import android.app.Application;
 import android.util.Log;
-
 import com.android.loter.db.DBHelper;
 import com.android.loter.util.SPUtil;
 import com.android.loter.util.log.CrashlyticsTree;

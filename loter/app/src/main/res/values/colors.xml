@@ -15,6 +15,7 @@
 
     <!--MainActivity-->
     <color name="tab_normal">#636363</color>
+    <color name="dialog_bg">#00ffffff</color>
 
     <color name="actionsheet_blue">#037BFF</color>
     <color name="actionsheet_red">#FD4A2E</color>

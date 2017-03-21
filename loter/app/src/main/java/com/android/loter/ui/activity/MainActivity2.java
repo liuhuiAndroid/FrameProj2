@@ -1,5 +1,6 @@
 package com.android.loter.ui.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import com.android.loter.App;
 import com.android.loter.R;
 import com.android.loter.inter.CallbackChangeFragment;
 import com.android.loter.inter.CallbackMineFragment;
+import com.android.loter.inter.OnRedPacketClickListener;
 import com.android.loter.ui.base.BaseActivity;
 import com.android.loter.ui.base.BaseFragment;
 import com.android.loter.ui.base.BaseMainFragment;
@@ -24,6 +26,7 @@ import com.android.loter.ui.fragment.third.LoterThirdFragment;
 import com.android.loter.ui.fragment.third.child.LiveFragment;
 import com.android.loter.ui.widget.BottomBar;
 import com.android.loter.ui.widget.BottomBarTab;
+import com.android.loter.ui.widget.RedPacketDialog;
 import com.android.loter.util.BusUtil;
 import com.android.loter.util.CommonEvent;
 import com.android.loter.util.log.Logger;
@@ -55,6 +58,7 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
     BottomBar mBottomBar;
 
     private SupportFragment[] mFragments = new SupportFragment[5];
+    private RedPacketDialog mRedPacketDialog;
 
     @Override
     protected int bindLayout() {
@@ -143,6 +147,37 @@ public class MainActivity2 extends BaseActivity implements BaseMainFragment.OnBa
                 }
             }
 
+        });
+
+//        boolean wrapInScrollView = false;
+//        MaterialDialog.Builder mBuilder = new MaterialDialog.Builder(this);
+//        LayoutInflater factory = LayoutInflater.from(this);
+//        final View stdView = factory.inflate(R.layout.dialog_red_packet, null);
+//        mBuilder.customView(stdView, wrapInScrollView)
+//                .autoDismiss(false)
+//                .backgroundColor(getResources().getColor(R.color.dialog_bg))
+//                .build()
+//                .show();
+
+        mRedPacketDialog = new RedPacketDialog(this);
+        mRedPacketDialog.setOnRedPacketClickListener(new OnRedPacketClickListener() {
+            @Override
+            public void dialogDissmiss() {
+                if(mRedPacketDialog !=null && mRedPacketDialog.isShowing()){
+                    mRedPacketDialog.dismiss();
+                }
+            }
+            @Override
+            public void redPacket() {
+
+            }
+        });
+        mRedPacketDialog.show();
+        mRedPacketDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                mRedPacketDialog.setLoop(false);
+            }
         });
     }
 
