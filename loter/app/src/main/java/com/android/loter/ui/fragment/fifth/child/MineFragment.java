@@ -11,6 +11,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.loter.R;
 import com.android.loter.inter.CallbackMineFragment;
 import com.android.loter.ui.base.BaseFragment;
+import com.android.loter.ui.fragment.fourth.child.ShoppingTrolleyFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -82,6 +83,38 @@ public class MineFragment extends BaseFragment {
     }
 
     /**
+     * 消息
+     */
+    @OnClick(R.id.tv_message)
+    public void mTvMessage() {
+        start(MyMessageFragment.newInstance());
+    }
+
+    /**
+     * 购物车
+     */
+    @OnClick(R.id.tv_shopping_cart)
+    public void mTvShoppingCart() {
+        start(ShoppingTrolleyFragment.newInstance());
+    }
+
+    /**
+     * 背包
+     */
+    @OnClick(R.id.tv_backpack)
+    public void mTvBackpack() {
+        start(MyBackpackFragment.newInstance());
+    }
+
+    /**
+     * 好友
+     */
+    @OnClick(R.id.tv_friend)
+    public void mTvFriend() {
+        start(MyFriendFragment.newInstance());
+    }
+
+    /**
      * 提现明细
      */
     @OnClick(R.id.tv_withdrawed_cash_detail)
@@ -112,5 +145,46 @@ public class MineFragment extends BaseFragment {
     public void rlMyOrder() {
         start(MyOrderFragment.newInstance());
     }
+
+    /**
+     * 我的邀请
+     */
+    @OnClick(R.id.rl_my_invite)
+    public void rlMyInvite() {
+        start(MyInviteFragment.newInstance());
+    }
+
+    /**
+     * 我的足迹
+     */
+    @OnClick(R.id.rl_my_footprint)
+    public void rlMyFootprint() {
+        start(MyFootprintFragment.newInstance());
+    }
+
+    /**
+     * 我的关注  商铺列表
+     */
+    @OnClick(R.id.tv_follow_seller)
+    public void tvFollowSeller() {
+        start(FollowSellerFragment.newInstance());
+    }
+
+    /**
+     * 我的关注  商品列表
+     */
+    @OnClick(R.id.tv_follow_product)
+    public void tvFollowProduct() {
+        start(FollowProductFragment.newInstance());
+    }
+
+    /**
+     * 我的关注  红人列表
+     */
+    @OnClick(R.id.tv_follow_idol)
+    public void tvFollowIdol() {
+        start(FollowIdolFragment.newInstance());
+    }
+
 
 }
